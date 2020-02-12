@@ -1,0 +1,142 @@
+* {
+  padding:0;
+  margin:0;
+  outline:none;
+  box-sizing:border-box;
+}
+body {
+  width:100vw;
+  height:100vh;
+  overflow-y:auto;
+}
+#china-map {
+  padding:0;
+  margin:0;
+  width: 100vw;
+  height: 100vw;
+  margin: 0 auto;
+  margin-top:10vw;
+  z-index:-1;
+}
+.head-title-box {
+  width:100vw;
+  height:30vw;
+  padding-top:5vw;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin:0 auto;
+}
+.head-title-box > div {
+  text-align:center;
+}
+.head-title {
+  width:100vw;
+  line-height: 8vw;
+  height:8vw;
+}
+.head-title:nth-child(1) {
+  font-size:5vw;
+  font-weight:bold;
+}
+.head-title:nth-child(2) {
+  font-size:3.5vw;
+}
+.relay {
+  padding:0 3vw;
+  height:6vw !important;
+  line-height:6vw;
+  font-size:3.5vw;
+  border:1px solid black;
+  border-radius:10vw;
+}
+.barrage-box {
+  width:90vw;
+  height:50vw;
+  float:left;
+  margin-top:-90vw;
+  margin-left:5vw;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  pointer-events: none;
+}
+.barrage {
+  width:40vw;
+  height:8vw;
+  background-color: rgba(106, 191, 231, 0.274);
+  border-radius: 8vw;
+  font-size:4vw;
+  line-height:8vw;
+  text-align:center;
+  color:rgb(212, 168, 71);
+  overflow:hidden;
+  padding:0 4vw;
+  pointer-events: none;
+}
+.barrage > p {
+  display:inline-block;
+  margin-left:0;
+  white-space: nowrap;
+  overflow:hidden;
+  pointer-events: none;
+  transform: translateX(100%);
+}
+@keyframes wordsLoop {
+  0% {
+    transform: translateX(-20%);
+    -webkit-transform: translateX(-20%);
+  }
+  100% {
+    transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+  }
+}
+.barrage:nth-child(1),.barrage:nth-child(3) {
+  align-self:flex-start;
+}
+.barrage:nth-child(2) {
+  align-self:flex-end;
+}
+.barrage:nth-child(4) {
+  align-self: center;
+}
+.chear-box {
+  width:90vw;
+  height:40vw;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin:0 auto;
+  position:relative;
+  top:-13vw;
+}
+.chear-box > div {
+  margin:0 auto;
+  text-align:center;
+}
+.ad {
+  font-size:4vw;
+}
+.input-box {
+  width:70vw;
+  height:8vw;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  border:1px solid rgb(131, 129, 129);
+}
+.input-box > input {
+  appearance:none;
+  width:100%;
+  height:100%;
+}
+.button {
+  padding:3vw 4vw;
+  background-color: rgb(74, 156, 223);
+  color:white;
+  border-radius: 2vw;
+  font-size:4vw;
+}

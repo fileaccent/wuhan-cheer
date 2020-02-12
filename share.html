@@ -68,159 +68,117 @@
   <script type="text/javascript" src="js/jquery.min.js"></script>
   <script type="text/javascript" src="js/echarts.min.js"></script>
   <script type="text/javascript" src="js/map/china.js"></script>
+  <script src="js/qrcode.min.js"></script>
 </head>
 <body>
   <div class="message-box">
     <div class="portait">
-      <img src="" />
+      <img src="/" />
     </div>
     <div class="message">
-      我在 XX 省, 我为湖北加油! 我为中国加油!
+      我在 省, 我为湖北加油! 我为中国加油!
     </div>
   </div>
   <div id="china-map"></div>
   <div class="share-box">
     <div class="hint-text">长按保存图片</div>
     <div class="QRcode">
-      <img src="" />
+      
     </div>
   </div>
   <script>
-    var myChart = echarts.init(document.getElementById('china-map'));
+    let myChart = echarts.init(document.getElementById('china-map'));
 
-    var provinces = ['shanghai', 'hebei', 'shanxi', 'neimenggu', 'liaoning', 'jilin', 'heilongjiang', 'jiangsu', 'zhejiang', 'anhui', 'fujian', 'jiangxi', 'shandong', 'henan', 'hubei', 'hunan', 'guangdong', 'guangxi', 'hainan', 'sichuan', 'guizhou', 'yunnan', 'xizang', 'shanxi1', 'gansu', 'qinghai', 'ningxia', 'xinjiang', 'beijing', 'tianjin', 'chongqing', 'xianggang', 'aomen'];
+    let grobal = JSON.parse(window.sessionStorage.getItem('grobal'));
 
-    var provincesText = ['上海', '河北', '山西', '内蒙古', '辽宁', '吉林', '黑龙江', '江苏', '浙江', '安徽', '福建', '江西', '山东', '河南', '湖北', '湖南', '广东', '广西', '海南', '四川', '贵州', '云南', '西藏', '陕西', '甘肃', '青海', '宁夏', '新疆', '北京', '天津', '重庆', '香港', '澳门'];
+    let provinces = ['shanghai', 'hebei', 'shanxi', 'neimenggu', 'liaoning', 'jilin', 'heilongjiang', 'jiangsu', 'zhejiang', 'anhui', 'fujian', 'jiangxi', 'shandong', 'henan', 'hubei', 'hunan', 'guangdong', 'guangxi', 'hainan', 'sichuan', 'guizhou', 'yunnan', 'xizang', 'shanxi1', 'gansu', 'qinghai', 'ningxia', 'xinjiang', 'beijing', 'tianjin', 'chongqing', 'xianggang', 'aomen'];
 
-    var seriesData = [{
-      name: '北京'
-    }, {
-      name: '天津'
-    }, {
-      name: '上海'
-    }, {
-      name: '重庆'
-    }, {
-      name: '河北'
-    }, {
-      name: '河南'
-    }, {
-      name: '云南'
-    }, {
-      name: '辽宁'
-    }, {
-      name: '黑龙江'
-    }, {
-      name: '湖南'
-    }, {
-      name: '安徽'
-    }, {
-      name: '山东'
-    }, {
-      name: '新疆'
-    }, {
-      name: '江苏'
-    }, {
-      name: '浙江'
-    }, {
-      name: '江西'
-    }, {
-      name: '湖北'
-    }, {
-      name: '广西'
-    }, {
-      name: '甘肃'
-    }, {
-      name: '山西'
-    }, {
-      name: '内蒙古'
-    }, {
-      name: '陕西'
-    }, {
-      name: '吉林'
-    }, {
-      name: '福建'
-    }, {
-      name: '贵州'
-    }, {
-      name: '广东'
-    }, {
-      name: '青海'
-    }, {
-      name: '西藏'
-    }, {
-      name: '四川'
-    }, {
-      name: '宁夏'
-    }, {
-      name: '海南'
-    }, {
-      name: '台湾'
-    }, {
-      name: '香港'
-    }, {
-      name: '澳门'
-    }, {
-      name: '南沙诸岛'
-    }];
-
+    let provincesText = ['上海', '河北', '山西', '内蒙古', '辽宁', '吉林', '黑龙江', '江苏', '浙江', '安徽', '福建', '江西', '山东', '河南', '湖北', '湖南', '广东', '广西', '海南', '四川', '贵州', '云南', '西藏', '陕西', '甘肃', '青海', '宁夏', '新疆', '北京', '天津', '重庆', '香港', '澳门'];
 
     initEcharts();
 
     // 初始化echarts
     function initEcharts() {
-      var tmpSeriesData = seriesData;
-
-      var option = {
-        title: {
-          text: '',
-          left: 'center'
-        },
+      let option = {
         series: [
           {
             name: '中国',
             type: 'map',
             mapType: 'china',
             roam: false,//是否开启鼠标缩放和平移漫游
-            data: tmpSeriesData,
             top: "3%",//组件距离容器的距离
-              zoom:1.1,
-              selectedMode : 'single',
-
+            zoom:1.1,
+            selectedMode : 'single',
+            label: {
+              normal: {
+                show: true,//显示省份标签
+                textStyle:{
+                  color: '#000',
+                  fontSize: 8,
+                  fontWeight: 'bold',
+                }//省份标签字体样式
+              },
+              emphasis: {//对应的鼠标悬浮效果
+                show: false,
+                textStyle: {
+                  color: '#000'
+                }
+              }
+            },
+            itemStyle: {
+              normal: {
+                borderWidth: .5,//区域边框宽度
+                borderColor: '#0550c3',//区域边框颜色
+                color: '#fff'
+              },
+              emphasis: {
+                borderWidth: .5,
+                borderColor: '#0550c3',
+                color: '#fff'
+              }
+            },
+            markPoint: { //图表标注。
+              symbol: 'circle',
+              symbolSize: 14,//图形大小
               label: {
                   normal: {
-                      show: true,//显示省份标签
-                      textStyle:{
-                                  color: '#000',
-                                  fontSize: 8,
-                                  fontWeight: 'bold',
-                                }//省份标签字体样式
+                    show: false,
                   },
-                  emphasis: {//对应的鼠标悬浮效果
-                      show: false,
-                      textStyle: {
-                        color: '#000'
-                      }
+                  emphasis: {
+                    show: false,
                   }
               },
               itemStyle: {
-                  normal: {
-                      borderWidth: .5,//区域边框宽度
-                      borderColor: '#0550c3',//区域边框颜色
-                      color: '#fff'
-                  },
-                  emphasis: {
-                      borderWidth: .5,
-                      borderColor: '#0550c3',
-                      color: '#fff'
-                  }
+                normal: {
+                  color: 'rgba(172,50,28,1)'
+                }
               },
+              data: (function () {
+                let coordArr = [];
+                coordArr.push({coord: [grobal.longitude, grobal.latitude]});
+                return coordArr;
+              })()
+            }
           }
         ]
       };
       myChart.setOption(option);
-
       myChart.off("click");
+    }
+    init();
+    function init() { // 初始化
+      console.log(grobal);
+      document.querySelector('.portait > img').setAttribute('src', grobal.avatar);
+      document.querySelector('.message').innerHTML = `我在${grobal.province}, 我为湖北加油! 我为中国加油!`;
+      console.log(window.location);
+     let QRcode =  new QRCode(document.querySelector(".QRcode"),{
+                                                                  text: window.location.host + '/index.html',
+                                                                  width: 100,
+                                                                  height: 100,
+                                                                  colorDark: '#000000',
+                                                                  colorLight: '#ffffff',
+                                                                  correctLevel: QRCode.CorrectLevel.H
+                                                                });
     }
   </script>
 </body>
