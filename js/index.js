@@ -5,22 +5,22 @@
 
   let seriesData = [{
     name: '北京',
-    value: 100000
+    value: 0
   }, {
     name: '天津',
-    value: 1000
+    value: 0
   }, {
     name: '上海',
-    value: 7000
+    value: 0
   }, {
     name: '重庆',
-    value: 8000
+    value: 0
   }, {
     name: '河北',
-    value: 60
+    value: 0
   }, {
     name: '河南',
-    value: 60
+    value: 0
   }, {
     name: '云南',
     value: 0
@@ -32,13 +32,13 @@
     value: 0
   }, {
     name: '湖南',
-    value: 60
+    value: 0
   }, {
     name: '安徽',
     value: 0
   }, {
     name: '山东',
-    value: 60
+    value: 0
   }, {
     name: '新疆',
     value: 0
@@ -53,16 +53,16 @@
     value: 0
   }, {
     name: '湖北',
-    value: 60
+    value: 0
   }, {
     name: '广西',
-    value: 60
+    value: 0
   }, {
     name: '甘肃',
     value: 0
   }, {
     name: '山西',
-    value: 60
+    value: 0
   }, {
     name: '内蒙古',
     value: 0
@@ -80,7 +80,7 @@
     value: 0
   }, {
     name: '广东',
-    value: 597
+    value: 0
   }, {
     name: '青海',
     value: 0
@@ -89,13 +89,13 @@
     value: 0
   }, {
     name: '四川',
-    value: 60
+    value: 0
   }, {
     name: '宁夏',
     value: 0
   }, {
     name: '海南',
-    value: 60
+    value: 0
   }, {
     name: '台湾',
     value: 0
@@ -205,7 +205,6 @@
               color: 
                 function (params) { // 设置颜色
                   let itemValue = params.data.value;
-                  let colorList = ['#5475f5', '#9feaa5', '#85daef','#74e2ca', '#e6ac53', '#9fb5ea'];
                   let index = 0;
                   if (itemValue > 10000) index = 0;
                   else if (itemValue > 1000) index = 1;
@@ -221,7 +220,6 @@
               color:
                 function (params) { // 设置颜色
                   let itemValue = params.data.value;
-                  let colorList = ['#5475f5', '#9feaa5', '#85daef','#74e2ca', '#e6ac53', '#9fb5ea'];
                   let index = 0;
                   if (itemValue > 10000) index = 0;
                   else if (itemValue > 1000) index = 1;
@@ -240,10 +238,9 @@
     myChart.off("click");
   }
 
-
   // 请求部分
-  let rootUrl = 'http://127.0.0.1:8080';
-  let encoded_uri = encodeURIComponent(rootUrl + '/index.html');
+  let rootUrl = 'http://llzhisu.cn:8080';
+  let encoded_uri = window.location.href;
   let id = '';
   let grobal = {
     avatar: '',
@@ -251,41 +248,71 @@
     province: '',
     province_id: '',
     latitude: 0,
-    longitude: 0
+    longitude: 0,
+    last_id:0
   };
-  window.grobal = grobal;
-  window.grobal.rootUrl = rootUrl;
-  function request (url, setting={}) {
-    return fetch(rootUrl + url, setting)
-    .then((res)=> {
-      if (res.status === 401) {
-        window.location = rootUrl + `/auth/jump?redirect=${encoded_uri}`;
+
+  let getLoactionErr = function getLoactionErrFunction () {
+    getLoactionErrFunction.index = 0;
+    if (getLoactionErrFunction.index === 3) {
+      alert('获取地区信息失败,请刷新网页!');
+      location = window.location.href;
+    }
+    request('/index/reLocation', {
+      credentials: 'include'
+    }).then((res) => {
+      return res.json()
+    })
+    .then((data) => {
+      if (data.province_id !== 0) {
+        grobal.latitude = data.latitude;
+        grobal.longitude = data.longitude;
+        grobal.province_id = data.province_id;
       } else {
-        return res.json();
+        getLoactionErrFunction.index++;
+        getLoactionErrFunction();
       }
     })
-    .catch(err=> {
-      console.log(err);
-    })
   }
-  // request('') // 请求测试
-  // .then((data) => {
-  //   console.log(data);
-  // })
-  // request('/auth/fake/{id}') // 测试接口
-  // .then((data) => {
-  //   console.log(data);
-  // })
-  request('/api/index') // 首页内容请求
+
+  request('/api/index',{ // 对 fetch 的封装
+    credentials: 'include'
+  }) // 首页内容请求
   .then((data) => {
     console.log(data);
-    window.grobal.avatar = data.avatar;
-    let option = data.province.map((item) => {
+    grobal.avatar = data.avatar; // 保存头像 id
+    id = data.id;
+    if (data.province_id !== 0) {
+      grobal.latitude = data.latitude;
+      grobal.longitude = data.longitude;
+      grobal.province_id = data.province_id;
+    } else {
+      console.log('error!');
+      getLoactionErr();
+    }
+    grobal.latitude = data.latitude;
+    grobal.longitude = data.longitude;
+    grobal.province_id = data.province_id;
+    grobal.last_id = data.message[data.message.length - 1].id;
+    findProvinceId.map((item) => {
+      if( item.id === grobal.province_id) {
+        grobal.province = item.name;
+      }
+    })
+    console.log(grobal);
+    let option = data.province.map((item) => { // 把省去掉不然有些数据,无法获取
+      let name;
+      if (/省/.test(item.name)) {
+        name = item.name.replace('省','');
+      } else {
+        name = item.name
+      }
       return {
-        name: item.name,
+        name: name,
         value: item.mes_amount
       }
     })
+    console.log(option);
     let total = option.reduce((total,item) => {
       return total + +item.value;
     },0);
@@ -299,7 +326,6 @@
             areaColor: 
               function (params) { // 设置颜色
                 let itemValue = params.data.value;
-                let colorList = ['#5475f5', '#9feaa5', '#85daef','#74e2ca', '#e6ac53', '#9fb5ea'];
                 let index = 0;
                 if (itemValue > 10000) index = 0;
                 else if (itemValue > 1000) index = 1;
@@ -314,7 +340,6 @@
             borderColor: '#0550c3',
             color: function (params) { // 设置颜色
                 let itemValue = params.data.value;
-                let colorList = ['#5475f5', '#9feaa5', '#85daef','#74e2ca', '#e6ac53', '#9fb5ea'];
                 let index = 0;
                 if (itemValue > 10000) index = 0;
                 else if (itemValue > 1000) index = 1;
@@ -327,63 +352,107 @@
         },
       }]
     });
-    
-    initEcharts(); // 重新初始化
-
-    let barrage = document.querySelectorAll('.barrage');
-    for (let i = 0;i < data.message.length; i++) {
-      barrage[i % 4].children[0].innerHTML += data.message[i].content;
-    }
-    let style = document.styleSheets[0]; // 通过在chrome 中打开,找到样式表,来手动插入样式
-    style.insertRule(`
-    .barrage > p {
-      animation: ${barrage[0].children[0].innerHTML.length / 2}s wordsLoop linear infinite normal;
-    }
-    `, 11);
-    // for (let i = 0; i < barrage.length; i++) { // 没用 ? why
-    //   barrage[i].children[0].style.animation = +barrage[0].children[0].innerHTML.length / 2 + 's' + 'wordsLoop linear infinite normal';
-    // }
-    let geocoder = new qq.maps.Geocoder({ // 调用腾讯地图 API 将经纬度转化为 省份
-      complete: function(res) {
-          console.log(res); 
-          let province = res.detail.addressComponents.province;
-          window.grobal.province = province;
-          window.grobal.province_id = findProvinceId.findIndex((item) => {
-            return item.name === province; 
-          })
-          console.log(window.grobal);
-      }
-    })
-    let latLng = new qq.maps.LatLng(data.latitude, data.longitude);
-    geocoder.getAddress(latLng);
-    [window.grobal.latitude, window.grobal.longitude] = [data.latitude, data.longitude];
-  })
-  request('/api/index/mes') // 首页弹幕轮询
-  .then((data) => {
-    console.log(data);
-    console.log(data.message);
-    let barrage = document.querySelectorAll('.barrage');
-    for (let i = 0;i < data.message.length; i++) {
-      barrage[i % 4].children[0].innerHTML += '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp' + data.message[i].content;
-    }
+    myChart.off("click");
+    //initEcharts(); // 重新初始化
+    setBarrage(data.message); // 设置弹幕
+     
   })
   document.querySelector('.button').onclick = function () {
     let postMessageParams = {
       content: document.querySelector('.input-box > input').value || '奥里给',
-      province_id: window.grobal.province_id
+      province_id: +grobal.province_id
     }
-    if (window.grobal.province_id) {
+    if (grobal.province_id && postMessageParams.content.length < 22) {
       request('/api/message', {
         method: 'POST',
-        body: JSON.stringify(postMessageParams)
+        credentials: 'include',
+        body: `content=${postMessageParams.content}&province_id=${postMessageParams.province_id}`,
+        headers: {
+          "Content-Type":"application/x-www-form-urlencoded"
+        }
       })
       .then((data) => {
         console.log(data);
         location = '/share.html';
-        window.sessionStorage.setItem('grobal', JSON.stringify(window.grobal));
+        window.sessionStorage.setItem('grobal', JSON.stringify(grobal));
       })
     } else {
-      console.log(正在获取省份中);
+      console.log('正在获取省份中');
     }
   }
+
+function request (url, setting={}) {
+  return fetch(rootUrl + url, setting)
+  .then((res)=> {
+    if (res.status === 401) {
+      debugger;
+      console.log('重新登录');
+      window.location = rootUrl + `/auth/jump?redirect=${encoded_uri}`;
+    } else {
+      return res.json();
+    }
+  })
+  .catch(err=> {
+    console.log(err);
+  })
+}
+
+function setBarrage (message) {
+  let barrage = document.querySelectorAll('.barrage'); // 输入弹幕
+  function parseDom(arg) {
+　　 var objE = document.createElement("div");
+　　 objE.innerHTML = arg;
+    let obj = objE.children;
+　　 return objE.children;
+  };
+  let max = message[0].content.length;
+  console.log(max);
+  for (let i = 0;i < message.length; i++) {
+    barrage[i % 4].children[0].append(...parseDom(`
+      <div>
+        <div class="portait"><img src="${message[i].user_avatar}"/></div>
+        <div class="text">${message[i].content}</div>
+        <div class="space"></div>
+      </div>
+    `))
+    if (message[i].content.length > max) {
+      max = message[i].content.length;
+    }
+  }
+  console.log(max);
+  for (let i = 0; i < 4; i++) {
+    barrage[i].children[0].style.width = +max* 10 * message.length / 4 +'px' ;
+    console.log(+max* 10 * message.length / 4 +'px');
+  }
+  let style = document.styleSheets[0]; // 通过在chrome 中打开,找到样式表,来手动插入样式
+
+  // 注意下面的代码,css 的顺序变动后,会失效,详情请百度
+  style.insertRule(`
+  .barrage > div {
+    transform: translateX(${+max * 10 * (message.length / 4 + 1)}px);
+    animation: ${+max * (message.length / 4 + 1) / 4}s wordsLoop linear infinite;
+  }
+  `, 14);
+  style.insertRule(`
+  @keyframes wordsLoop {
+    0% {
+      transform: translateX(${+max * 10 * (message.length / 4 + 1)}px);
+    }
+    100% {
+      transform: translateX(${-max* 10 * (message.length / 4 + 1)}px);
+    }
+  }
+  `, 15);
+  setTimeout(() => {
+    request(`/api/index/mes?last_id=${grobal.last_id}`, {
+      credentials: 'include'
+    }) // 首页弹幕轮询
+    .then((data) => {
+      console.log(data);
+      console.log(data.message);
+      grobal.last_id = data.message[data.message.length - 1].id;
+      setBarrage(data.message);
+    })
+  }, 600000)
+}
 })();
