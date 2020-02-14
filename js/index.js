@@ -238,7 +238,7 @@
   }
 
   // 请求部分
-  let rootUrl = 'http://llzhisu.cn:8080';
+  let rootUrl = 'http://llzhisu.cn:8080/'; // http://llzhisu.cn:8080/   http://localhost:8000/
   let encoded_uri = window.location.href;
   let id = '';
   let grobal = {
@@ -258,7 +258,7 @@
       location = window.location.href;
     }
     request('/index/reLocation', {
-      credentials: 'include'
+      //credentials: 'include'
     }).then((res) => {
       return res.json()
     })
@@ -274,7 +274,7 @@
     })
   }
 
-  request('/api/index',{ // 对 fetch 的封装
+  request('api/index',{ // 对 fetch 的封装
     credentials: 'include'
   }) // 首页内容请求
   .then((data) => {
@@ -362,7 +362,7 @@
       province_id: +grobal.province_id
     }
     if (grobal.province_id && postMessageParams.content.length < 22) {
-      request('/api/message', {
+      request('api/message', {
         method: 'POST',
         credentials: 'include',
         body: `content=${postMessageParams.content}&province_id=${postMessageParams.province_id}`,
@@ -408,10 +408,9 @@ function setBarrage (message) {
   console.log(max);
   for (let i = 0;i < message.length; i++) {
     barrage[i % 4].children[0].append(...parseDom(`
-      <div>
+      <div class="barrage-item">
         <div class="portait"><img src="${message[i].user_avatar}"/></div>
         <div class="text">${message[i].content}</div>
-        <div class="space"></div>
       </div>
     `))
     if (message[i].content.length > max) {
@@ -420,7 +419,11 @@ function setBarrage (message) {
   }
   console.log(max);
   for (let i = 0; i < 4; i++) {
-    barrage[i].children[0].style.width = +max* 10 * message.length / 4 +'px' ;
+    if (i%2) {
+      barrage[i].children[0].style.width = +max* 10 * message.length / 4 +'px' ;
+    } else {
+      barrage[i].children[0].style.width = 400 + max* 10 * message.length / 4 +'px' ;
+    }
     console.log(+max* 10 * message.length / 4 +'px');
   }
   let style = document.styleSheets[0]; // 通过在chrome 中打开,找到样式表,来手动插入样式
@@ -441,17 +444,19 @@ function setBarrage (message) {
       transform: translateX(${-max* 10 * (message.length / 4 + 1)}px);
     }
   }
-  `, 15);
+  `, 16);
   setTimeout(() => {
-    request(`/api/index/mes?last_id=${grobal.last_id}`, {
+    request(`api/index/mes?last_id=${grobal.last_id}`, {
       credentials: 'include'
     }) // 首页弹幕轮询
     .then((data) => {
       console.log(data);
       console.log(data.message);
       grobal.last_id = data.message[data.message.length - 1].id;
-      setBarrage(data.message);
+      message = message.concat(data.message);
+      console.log(message);
+      setBarrage(message);
     })
-  }, 600000)
+  }, 60000)
 }
 })();

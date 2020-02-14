@@ -13,7 +13,7 @@ let server = http.createServer(function(request,response) {
     "avatar": "http://a3.att.hudong.com/14/75/01300000164186121366756803686.jpg",
     "latitude":35.54303,
     "longitude":106.6653,
-    "province_id": 0,
+    "province_id": 1,
     "province": 
     [
       {
@@ -35,66 +35,82 @@ let server = http.createServer(function(request,response) {
     "message":
     [
       {
+        id:1,
         "user_avatar": "http://a3.att.hudong.com/14/75/01300000164186121366756803686.jpg",
         "content": "武汉加油1"
       },
       {
+        id:2,
         "user_avatar": "http://a3.att.hudong.com/14/75/01300000164186121366756803686.jpg",
         "content": "武汉加油1"
       },
       {
+        id:3,
         "user_avatar": "http://a3.att.hudong.com/14/75/01300000164186121366756803686.jpg",
         "content": "武汉加油1"
       },
       {
+        id:4,
         "user_avatar": "http://a3.att.hudong.com/14/75/01300000164186121366756803686.jpg",
         "content": "武汉加油1"
       },
       {
+        id:5,
         "user_avatar": "http://a3.att.hudong.com/14/75/01300000164186121366756803686.jpg",
         "content": "武汉加油1"
       },
       {
+        id:6,
         "user_avatar": "http://a3.att.hudong.com/14/75/01300000164186121366756803686.jpg",
         "content": "武汉加油1"
       },
       {
+        id:7,
         "user_avatar": "http://a3.att.hudong.com/14/75/01300000164186121366756803686.jpg",
         "content": "武汉加油1"
       },
       {
+        id:8,
         "user_avatar": "http://a3.att.hudong.com/14/75/01300000164186121366756803686.jpg",
         "content": "武汉加油1, 我永远爱您,中国加油2武汉加油1"
       },
       {
+        id:9,
         "user_avatar": "http://a3.att.hudong.com/14/75/01300000164186121366756803686.jpg",
         "content": "武汉加油1, 我永远爱您,中国加油3"
       },
       {
+        id:10,
         "user_avatar": "http://a3.att.hudong.com/14/75/01300000164186121366756803686.jpg",
         "content": "武汉加油1, 我永远爱您,中国加油4"
       },
       {
+        id:11,
         "user_avatar": "http://a3.att.hudong.com/14/75/01300000164186121366756803686.jpg",
         "content": "武汉加油1, 我永远爱您,中国加油5"
       },
       {
+        id:12,
         "user_avatar": "http://a3.att.hudong.com/14/75/01300000164186121366756803686.jpg",
         "content": "武汉加油1, 我永远爱您,中国加油6"
       },
       {
+        id:13,
         "user_avatar": "http://a3.att.hudong.com/14/75/01300000164186121366756803686.jpg",
         "content": "武汉加油1, 我永远爱您,中国加油7"
       },
       {
+        id:14,
         "user_avatar": "http://a3.att.hudong.com/14/75/01300000164186121366756803686.jpg",
         "content": "武汉加油1, 我永远爱您,中国加油8"
       },
       {
+        id:15,
         "user_avatar": "http://a3.att.hudong.com/14/75/01300000164186121366756803686.jpg",
         "content": "武汉加油9"
       },
       {
+        id:16,
         "user_avatar": "http://a3.att.hudong.com/14/75/01300000164186121366756803686.jpg",
         "content": "武汉加油10"
       }
@@ -103,46 +119,88 @@ let server = http.createServer(function(request,response) {
   if (pathname === "/api/index") {
     response.end(JSON.stringify(indexMessage));
   } else if (pathname === "/api/index/mes") {
+    let {pathname,query} = url.parse(request.url,true);
+    console.log(query.last_id);
     response.end(JSON.stringify({
       "message":
     [
       {
+        id:1,
         "user_avatar": "http://a3.att.hudong.com/14/75/01300000164186121366756803686.jpg",
-        "content": "武汉加油1, 我永远爱您,中国加油"
+        "content": `返回的数据武汉加油1${query.last_id}`
       },
       {
+        id:2,
         "user_avatar": "http://a3.att.hudong.com/14/75/01300000164186121366756803686.jpg",
-        "content": "武汉加油2"
+        "content": "武汉加油1"
       },
       {
+        id:3,
         "user_avatar": "http://a3.att.hudong.com/14/75/01300000164186121366756803686.jpg",
-        "content": "武汉加油3"
+        "content": "武汉加油1"
       },
       {
+        id:4,
         "user_avatar": "http://a3.att.hudong.com/14/75/01300000164186121366756803686.jpg",
-        "content": "武汉加油4"
+        "content": "武汉加油1"
       },
       {
+        id:5,
         "user_avatar": "http://a3.att.hudong.com/14/75/01300000164186121366756803686.jpg",
-        "content": "武汉加油5"
+        "content": "武汉加油1"
       },
       {
+        id:6,
         "user_avatar": "http://a3.att.hudong.com/14/75/01300000164186121366756803686.jpg",
-        "content": "武汉加油6"
+        "content": "武汉加油1"
       },
       {
+        id:7,
         "user_avatar": "http://a3.att.hudong.com/14/75/01300000164186121366756803686.jpg",
-        "content": "武汉加油7"
+        "content": "武汉加油1"
       },
       {
+        id:8,
         "user_avatar": "http://a3.att.hudong.com/14/75/01300000164186121366756803686.jpg",
-        "content": "武汉加油8"
+        "content": "武汉加油1, 我永远爱您,中国加油2武汉加油1"
       },
       {
+        id:9,
+        "user_avatar": "http://a3.att.hudong.com/14/75/01300000164186121366756803686.jpg",
+        "content": "武汉加油1, 我永远爱您,中国加油3"
+      },
+      {
+        id:10,
+        "user_avatar": "http://a3.att.hudong.com/14/75/01300000164186121366756803686.jpg",
+        "content": "武汉加油1, 我永远爱您,中国加油4"
+      },
+      {
+        id:11,
+        "user_avatar": "http://a3.att.hudong.com/14/75/01300000164186121366756803686.jpg",
+        "content": "武汉加油1, 我永远爱您,中国加油5"
+      },
+      {
+        id:12,
+        "user_avatar": "http://a3.att.hudong.com/14/75/01300000164186121366756803686.jpg",
+        "content": "武汉加油1, 我永远爱您,中国加油6"
+      },
+      {
+        id:13,
+        "user_avatar": "http://a3.att.hudong.com/14/75/01300000164186121366756803686.jpg",
+        "content": "武汉加油1, 我永远爱您,中国加油7"
+      },
+      {
+        id:14,
+        "user_avatar": "http://a3.att.hudong.com/14/75/01300000164186121366756803686.jpg",
+        "content": "武汉加油1, 我永远爱您,中国加油8"
+      },
+      {
+        id:15,
         "user_avatar": "http://a3.att.hudong.com/14/75/01300000164186121366756803686.jpg",
         "content": "武汉加油9"
       },
       {
+        id:16,
         "user_avatar": "http://a3.att.hudong.com/14/75/01300000164186121366756803686.jpg",
         "content": "武汉加油10"
       }
