@@ -373,7 +373,7 @@
       })
       .then((data) => {
         console.log(data);
-        location = '/share.html';
+        location = './share.html';
         window.sessionStorage.setItem('grobal', JSON.stringify(grobal));
       })
     } else {
