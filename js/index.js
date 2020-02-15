@@ -152,7 +152,7 @@
   initEcharts(); // 初始化
   function setStyle () {
     let clientHeight = document.body.clientHeight;
-    document.querySelector('.foot-box').style.marginTop = `calc(${clientHeight}px - 177vw)`;
+    document.querySelector('.foot-box').style.marginTop = `calc(${clientHeight}px - 182vw)`;
   }
   // 初始化echarts
   function initEcharts() {
@@ -240,7 +240,7 @@
                 }
             }
           },
-        }
+        },
       ]
     };
     myChart.setOption(option);
