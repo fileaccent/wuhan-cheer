@@ -26,9 +26,7 @@ function initQRcode() { // 初始化
   document.querySelector('.message').innerHTML = `<div>我在${grobal.province}</div><div>我为湖北加油! 我为中国加油!</div>`;
   console.log(window.location);
   let QRcode =  new QRCode(document.querySelector(".QRcode"),{
-                                                              text: window.location.href.replace('/share.html','/index.html'),
-                                                              width: 100,
-                                                              height: 100,
+                                                              text: 'https://fileaccent.gitee.io/wh-cheer/index.html',
                                                               colorDark: '#000000',
                                                               colorLight: '#ffffff',
                                                               correctLevel: QRCode.CorrectLevel.H
