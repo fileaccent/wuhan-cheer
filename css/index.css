@@ -150,11 +150,17 @@ body {
 .text {
   padding:2vw;
 }
+.foot-box {
+  width:100vw;
+  height:30vw;
+  display:flex;
+  justify-content:space-around;
+  align-items: center;
+}
 .chear-box {
   width:90vw;
   height:30vw;
   margin:0 auto;
-  margin-top:30vw;
   display:flex;
   flex-direction: column;
   justify-content: space-around;
@@ -203,6 +209,7 @@ body {
 .bbt-img {
   width:11.05vw;
   height:16.44vw;
-  position:fixed;
-  right:4.31vw;
+  margin-right:4.31vw;
+  margin-bottom:4vw;
+  align-self: flex-end;
 }
