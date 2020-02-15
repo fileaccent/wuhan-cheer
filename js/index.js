@@ -255,7 +255,9 @@
     longitude: 0,
     last_id:0
   };
+  let messages = [
 
+  ];
   let getLoactionErr = function getLoactionErrFunction () {
     getLoactionErrFunction.index = 0;
     if (getLoactionErrFunction.index === 3) {
@@ -389,7 +391,6 @@ function request (url, setting={}) {
   return fetch(rootUrl + url, setting)
   .then((res)=> {
     if (res.status === 401) {
-      debugger;
       console.log('重新登录');
       window.location = rootUrl + `/auth/jump?redirect=${encoded_uri}`;
     } else {
@@ -402,6 +403,7 @@ function request (url, setting={}) {
 }
 
 function setBarrage (message) {
+  messages = messages.concat(message);
   let barrage = document.querySelectorAll('.barrage'); // 输入弹幕
   function parseDom(arg) {
 　　 var objE = document.createElement("div");
@@ -409,47 +411,23 @@ function setBarrage (message) {
     let obj = objE.children;
 　　 return objE.children;
   };
-  let max = message[0].content.length;
-  console.log(max);
-  for (let i = 0;i < message.length; i++) {
+  for (let i = 0; i < 4; i++) {
+    //barrage[i].removeChild(document.querySelectorAll('.barrage-item'));
+    document.querySelectorAll('.barrage')[i].innerHTML = '<div></div>';
+    console.log('数据清空!');
+    console.log(document.querySelectorAll('.barrage')[i]);
+  }
+  for (let i = 0;i < messages.length; i++) {
     barrage[i % 4].children[0].append(...parseDom(`
       <div class="barrage-item">
         <div class="portait"><img src="${message[i].user_avatar}"/></div>
         <div class="text">${message[i].content}</div>
       </div>
     `))
-    if (message[i].content.length > max) {
-      max = message[i].content.length;
-    }
   }
-  console.log(max);
-  for (let i = 0; i < 4; i++) {
-    if (i%2) {
-      barrage[i].children[0].style.width = +max* 10 * message.length / 4 +'px' ;
-    } else {
-      barrage[i].children[0].style.width = 400 + max* 10 * message.length / 4 +'px' ;
-    }
-    console.log(+max* 10 * message.length / 4 +'px');
-  }
-  let style = document.styleSheets[0]; // 通过在chrome 中打开,找到样式表,来手动插入样式
-
-  // 注意下面的代码,css 的顺序变动后,会失效,详情请百度
-  style.insertRule(`
-  .barrage > div {
-    transform: translateX(${+max * 10 * (message.length / 4 + 1)}px);
-    animation: ${+max * (message.length / 4 + 1) / 4}s wordsLoop linear infinite;
-  }
-  `, 17);
-  style.insertRule(`
-  @keyframes wordsLoop {
-    0% {
-      transform: translateX(${+max * 10 * (message.length / 4 + 1)}px);
-    }
-    100% {
-      transform: translateX(${-max* 10 * (message.length / 4 + 1)}px);
-    }
-  }
-  `, 19);
+  messages.splice(0,16);
+  console.log(messages);
+  console.log(document.querySelectorAll('.barrage-item'));
   setTimeout(() => {
     request(`api/index/mes?last_id=${grobal.last_id}`, {
       credentials: 'include',
@@ -458,10 +436,10 @@ function setBarrage (message) {
       console.log(data);
       console.log(data.message);
       grobal.last_id = data.message[data.message.length - 1].id;
-      message = message.concat(data.message);
+      message = data.message;
       console.log(message);
       setBarrage(message);
     })
-  }, 60000)
+  }, 28000)
 }
 })();

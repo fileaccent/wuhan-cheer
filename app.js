@@ -10,7 +10,7 @@ let server = http.createServer(function(request,response) {
   let indexMessage = {
     "id": 1,
     "name": "fileaccent",
-    "avatar": "http://a3.att.hudong.com/14/75/01300000164186121366756803686.jpg",
+    "avatar": "http://thirdwx.qlogo.cn/mmopen/vi_32/P1xp3zWqiclAbzCnmiazulWBwKfBUBBZFvVQmKppnz4hQCibMq3SBQShj9t59ypBzVSYsfkMibqmmd53CJz2vP308Q/132",
     "latitude":35.54303,
     "longitude":106.6653,
     "province_id": 1,

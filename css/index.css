@@ -25,6 +25,8 @@ body {
   height:100vh;
   overflow-y:auto;
   background: linear-gradient(135deg, #E7F4E3 10%, #E8F6F6 80%, #E7F4E3 100%);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 #china-map {
   padding:0;
@@ -114,19 +116,9 @@ body {
   display:flex;
   justify-content: space-around;
   align-items: center;
-  animation: 20s wordsLoop linear infinite;
 }
 .barrage > div:nth-child(2),.barrage > div:nth-child(4) {
-  margin-left:50vw;
-}
-@keyframes wordsLoop {
-  0% {
-    
-  }
-  100% {
-    
-    
-  }
+  padding-left:50vw;
 }
 .barrage-item {
   height:8vw;
@@ -137,7 +129,16 @@ body {
   border-radius: 8vw;
   padding:5vw;
   margin-right:50vw;
+  animation: 30s wordsLoop linear infinite;
 } 
+@keyframes wordsLoop {
+  0% {
+    transform:translate(calc(200% + 200vw));
+  }
+  100% {
+    transform:translate(calc(-200% - 250vw));
+  }
+}
 .portait {
   width:6vw;
   height:6vw;
@@ -201,6 +202,6 @@ body {
   width:11.05vw;
   height:16.44vw;
   position:absolute;
-  top:138vw;
+  top:148vw;
   right:4.31vw;
 }
