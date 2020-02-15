@@ -35,9 +35,9 @@ function initQRcode() { // 初始化
                                                               colorLight: '#ffffff',
                                                               correctLevel: QRCode.CorrectLevel.H
                                                             });
-  let canvas = document.querySelector('.QRcode > canvas');
-  let img = Canvas2Image.convertToImage(canvas, canvas.width, canvas.height, 'jpg');
-  document.querySelector('.QRcode').removeChild(canvas);
+  let canva = document.querySelector('.QRcode > canvas');
+  let img = Canvas2Image.convertToImage(canva, canva.width, canva.height, 'jpg');
+  document.querySelector('.QRcode').removeChild(canva);
   document.querySelector('.QRcode').append(img);
 }
 document.body.ontouchstart = function () {
@@ -123,7 +123,6 @@ function convert2canvas() {
   var shareContent = cntElem; //需要截图的包裹的（原生的）DOM 对象
   var width = shareContent.offsetWidth; //获取dom 宽度
   var height = shareContent.offsetHeight; //获取dom 高度
-  
   var canvas = document.createElement("canvas"); //创建一个canvas节点
   var scale = 1; //定义任意放大倍数 支持小数
   canvas.width = width * scale; //定义canvas 宽度 * 缩放
