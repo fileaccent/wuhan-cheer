@@ -151,7 +151,7 @@ body {
   padding:2vw;
 }
 .foot-box {
-  width:85vw;
+  width:100vw;
   height:30vw;
   display:flex;
   justify-content:space-between;
@@ -162,6 +162,7 @@ body {
   width:60.242vw;
   height:30vw;
   margin:0 auto;
+  margin-left:20vw;
   display:flex;
   flex-direction: column;
   justify-content: space-around;
