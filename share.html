@@ -138,7 +138,7 @@
     let provincesText = ['上海', '河北', '山西', '内蒙古', '辽宁', '吉林', '黑龙江', '江苏', '浙江', '安徽', '福建', '江西', '山东', '河南', '湖北', '湖南', '广东', '广西', '海南', '四川', '贵州', '云南', '西藏', '陕西', '甘肃', '青海', '宁夏', '新疆', '北京', '天津', '重庆', '香港', '澳门'];
 
     initEcharts();
-
+    convert2canvas();
     // 初始化echarts
     function initEcharts() {
       let option = {
@@ -279,14 +279,11 @@
         top:0;
         left:0;
         z-index:999;
+        opacity:0;
         `
         console.log(img);
         document.body.append(img);
       })
-    }
-    document.body.onclick = function () {
-      convert2canvas();
-      document.body.onclick = null;
     }
   </script>
 </body>
