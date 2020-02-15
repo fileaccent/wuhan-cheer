@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
-  <script src="js/html2canvas.min.js"></script>
-  <script src="js/canvas2image.js"></script>
   <style>
     img {
       width:100%;
@@ -17,57 +15,96 @@
       margin:0;
       outline:none;
       box-sizing:border-box;
+      user-select:none;
+    }
+    @font-face {
+      font-family: 'txxc';
+      font-weight: normal;
+      font-style: normal;
+      src: url('../ttf/腾祥细潮黑简.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'hxb';
+      font-weight: normal;
+      font-style: normal;
+      src: url('../ttf/HuXiaoBoNanShenTi-2.otf') format('truetype');
     }
     body {
       width:100vw;
       height:100vh;
       overflow-y:auto;
+      background: linear-gradient(135deg, #E7F4E3 10%, #E8F6F6 80%, #E7F4E3 100%);
     }
     .message-box {
       width:90vw;
-      height:40vw;
       display:flex;
+      flex-direction: column;
       justify-content: space-around;
-      align-items: flex-end;
-      border:1px solid #fff;
+      align-items: center;
       margin:0 auto;
-      padding-top:20vw;
+      padding-top:11.42vw;
     }
     .portait {
-      width:10vw;
-      height:10vw;
+      width:19.67vw;
+      height:19.67vw;
       border-radius: 50%;
       overflow:hidden;
-      align-self:flex-start;
+    }
+    #canvas {
+      width:100%;
+      height:100%;
     }
     .message {
-      font-size:4vw;
+      margin: 9 auto;
+      text-align: center;
+      font-family: 'hxb';
+      margin-top:4.04vw;
+    }
+    .message > div:nth-child(1) {
+      font-size:6.47vw;
+      color:#5b5b5b;
+    }
+    .message > div:nth-child(2) {
+      font-size:4.04vw;
+      color:#bb2525;
+      margin-top:2.16vw;
     }
     #china-map {
       padding:0;
       margin:0;
-      width: 100vw;
-      height: 100vw;
+      width: 80vw;
+      height: 80vw;
       margin: 0 auto;
       z-index:-1;
-      margin-top:10vw;
+      margin-top:2vw;
     }
     .share-box {
-      width:60vw;
-      height:20vw;
-      float:right;
-      margin-right:5vw;
+      width:24.29vw;
+      height:24.29vw;
+      font-size:3.23vw;
+      font-family: 'hxb';
+      position:absolute;
+      top:110vw;
+      right:12.53vw;
       display:flex;
+      flex-direction: column;
       justify-content: space-around;
       align-items: center;
-      margin-top:-20vw;
     }
     .QRcode {
-      width:20vw;
-      height:20vw;
+      width:14.29vw;
+      height:14.29vw;
+    }
+    .bbt-image {
+      width:12.26vw;
+      height:17.79vw;
+      position:absolute;
+      top:113vw;
+      left:12vw;
     }
   </style>
-  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script src="js/html2canvas.min.js"></script>
+  <script src="js/canvas2image.js"></script>
   <script type="text/javascript" src="js/echarts.min.js"></script>
   <script type="text/javascript" src="js/map/china.js"></script>
   <script src="js/qrcode.min.js"></script>
@@ -75,18 +112,21 @@
 <body>
   <div class="message-box">
     <div class="portait">
-      <img src="/" />
+      <canvas id="canvas"></canvas>
     </div>
     <div class="message">
-      我在 省, 我为湖北加油! 我为中国加油!
+      <div>我在 省</div>
+      <div>我为湖北加油! 我为中国加油!</div>
     </div>
   </div>
   <div id="china-map"></div>
   <div class="share-box">
-    <div class="hint-text">长按保存图片</div>
-    <div class="QRcode">
-      
+    <div class="QRcode"> 
     </div>
+    <div class="hint-text">长按保存图片</div>
+  </div>
+  <div class="bbt-image">
+    <img src="./image/logo.png"/>
   </div>
   <script>
     let myChart = echarts.init(document.getElementById('china-map'));
@@ -113,7 +153,7 @@
             selectedMode : 'single',
             label: {
               normal: {
-                show: true,//显示省份标签
+                show: false,//显示省份标签
                 textStyle:{
                   color: '#000',
                   fontSize: 8,
@@ -170,8 +210,19 @@
     init(); // 初始化二维码
     function init() { // 初始化
       console.log(grobal);
-      document.querySelector('.portait > img').setAttribute('src', grobal.avatar);
-      document.querySelector('.message').innerHTML = `我在${grobal.province}, 我为湖北加油! 我为中国加油!`;
+      var img = new Image();
+      // 关键点，设置crossOriginal属性
+      img.setAttribute('crossOrigin', 'anonymous');
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext('2d');
+      img.src = grobal.avatar;
+      img.onload = function () {
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx.drawImage(img, 0, 0);
+      }
+      //document.querySelector('.portait > img').setAttribute('src', grobal.avatar);
+      document.querySelector('.message').innerHTML = `<div>我在${grobal.province}</div><div>我为湖北加油! 我为中国加油!</div>`;
       console.log(window.location);
      let QRcode =  new QRCode(document.querySelector(".QRcode"),{
                                                                   text: window.location.host + '/index.html',
@@ -189,20 +240,21 @@
       var shareContent = cntElem; //需要截图的包裹的（原生的）DOM 对象
       var width = shareContent.offsetWidth; //获取dom 宽度
       var height = shareContent.offsetHeight; //获取dom 高度
-
+      
       var canvas = document.createElement("canvas"); //创建一个canvas节点
       var scale = 1; //定义任意放大倍数 支持小数
       canvas.width = width * scale; //定义canvas 宽度 * 缩放
       canvas.height = height * scale; //定义canvas高度 *缩放
       //放大后再缩小提高清晰度
-      canvas.getContext("2d").scale(scale, scale); 
+      canvas.getContext("2d").scale(scale, scale);
+      //document.body.append(canvas);
       console.log(width)
       console.log(height)
       // 设置html2canvas方法的配置
       var opts = {
         scale: scale, // 添加的scale 参数
         canvas: canvas, //自定义 canvas
-        // allowTaint: true, //允许画布上有跨域图片 不建议使用 后面详细补充
+        allowTaint: true, //允许画布上有跨域图片 不建议使用 后面详细补充
         // logging: true, //日志开关，便于查看html2canvas的内部执行流程
         width: width, //dom 原始宽度
         height: height,

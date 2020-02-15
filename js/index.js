@@ -163,7 +163,12 @@
       visualMap: {  
         show : true,  
         x: 'left',  
-        y: '50%',  
+        y: '50%',
+        itemWidth:10,
+        itemHeight:10,
+        textStyle: {
+          fontSize:10
+        },
         splitList: [   
           {start: 10000, end:Infinity},{start: 1000, end: 9999},  
           {start: 100, end: 999},{start: 10, end: 99},  
@@ -275,7 +280,7 @@
   }
 
   request('api/index',{ // 对 fetch 的封装
-    credentials: 'include'
+    credentials: 'include',
   }) // 首页内容请求
   .then((data) => {
     console.log(data);
@@ -434,7 +439,7 @@ function setBarrage (message) {
     transform: translateX(${+max * 10 * (message.length / 4 + 1)}px);
     animation: ${+max * (message.length / 4 + 1) / 4}s wordsLoop linear infinite;
   }
-  `, 14);
+  `, 17);
   style.insertRule(`
   @keyframes wordsLoop {
     0% {
@@ -444,10 +449,10 @@ function setBarrage (message) {
       transform: translateX(${-max* 10 * (message.length / 4 + 1)}px);
     }
   }
-  `, 16);
+  `, 19);
   setTimeout(() => {
     request(`api/index/mes?last_id=${grobal.last_id}`, {
-      credentials: 'include'
+      credentials: 'include',
     }) // 首页弹幕轮询
     .then((data) => {
       console.log(data);
