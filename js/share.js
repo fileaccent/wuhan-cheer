@@ -42,6 +42,7 @@ function initQRcode() { // 初始化
     height:14.27vw;
   `
   document.querySelector('.QRcode').removeChild(canvaQRcode);
+  document.querySelector('.QRcode').append(imgQRcode);
 }
 document.body.ontouchstart = function () {
   convert2canvas();
