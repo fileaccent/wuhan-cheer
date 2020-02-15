@@ -78,7 +78,7 @@ body {
   height:24.29vw;
   font-size:3.23vw;
   font-family: 'hxb';
-  position:absolute;
+  position:fixed;
   bottom:10vw;
   right:12.53vw;
   display:flex;
@@ -93,7 +93,7 @@ body {
 .bbt-image {
   width:12.26vw;
   height:17.79vw;
-  position:absolute;
+  position:fixed;
   bottom:12vw;
   left:12vw;
 }

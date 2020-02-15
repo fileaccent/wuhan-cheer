@@ -157,7 +157,7 @@ body {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  position:absolute;
+  position:fixed;
   bottom:5vw;
   left:5vw;
 }
@@ -204,7 +204,7 @@ body {
 .bbt-img {
   width:11.05vw;
   height:16.44vw;
-  position:absolute;
+  position:fixed;
   bottom:5vw;
   right:4.31vw;
 }
