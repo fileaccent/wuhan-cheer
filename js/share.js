@@ -35,6 +35,10 @@ function initQRcode() { // 初始化
                                                               colorLight: '#ffffff',
                                                               correctLevel: QRCode.CorrectLevel.H
                                                             });
+  let canvas = document.querySelector('.QRcode > canvas');
+  let img = Canvas2Image.convertToImage(canvas, canvas.width, canvas.height, 'jpg');
+  document.querySelector('.QRcode').removeChild(canvas);
+  document.querySelector('.QRcode').append(img);
 }
 document.body.ontouchstart = function () {
   convert2canvas();
