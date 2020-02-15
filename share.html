@@ -34,6 +34,8 @@
       height:100vh;
       overflow-y:auto;
       background: linear-gradient(135deg, #E7F4E3 10%, #E8F6F6 80%, #E7F4E3 100%);
+      background-size: cover;
+      background-repeat: no-repeat;
     }
     .message-box {
       width:90vw;
@@ -160,7 +162,7 @@
       let QRcode =  new QRCode(document.querySelector(".QRcode"),{
                                                                   text: window.location.href.replace('/share.html','/index.html'),
                                                                   width: QRcodeSize,
-                                                                  height: QRcodeSiz,
+                                                                  height: QRcodeSize,
                                                                   colorDark: '#000000',
                                                                   colorLight: '#ffffff',
                                                                   correctLevel: QRCode.CorrectLevel.H
