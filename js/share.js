@@ -35,10 +35,10 @@ function initQRcode() { // 初始化
                                                               colorLight: '#ffffff',
                                                               correctLevel: QRCode.CorrectLevel.H
                                                             });
-  let canva = document.querySelector('.QRcode > canvas');
-  let img = Canvas2Image.convertToImage(canva, canva.width, canva.height, 'jpg');
+  let canvaQRcode = document.querySelector('.QRcode > canvas');
+  let imgQRcode = Canvas2Image.convertToImage(canvaQRcode, canvaQRcode.width, canvaQRcode.height, 'jpg');
   document.querySelector('.QRcode').removeChild(canva);
-  document.querySelector('.QRcode').append(img);
+  document.querySelector('.QRcode').append(imgQRcode);
 }
 document.body.ontouchstart = function () {
   convert2canvas();
