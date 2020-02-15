@@ -26,7 +26,7 @@ function initQRcode() { // 初始化
   document.querySelector('.message').innerHTML = `<div>我在${grobal.province}</div><div>我为湖北加油! 我为中国加油!</div>`;
   console.log(window.location);
   let QRcode =  new QRCode(document.querySelector(".QRcode"),{
-                                                              text: window.location.protocol + window.location.host + '/wh-cheer/index.html',// 项目首目录记得改掉
+                                                              text: window.location.protocol +'//'+ window.location.host + '/wh-cheer/index.html',// 项目首目录记得改掉
                                                               colorDark: '#000000',
                                                               colorLight: '#ffffff',
                                                               correctLevel: QRCode.CorrectLevel.H
