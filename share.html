@@ -139,7 +139,9 @@
     // 初始化echarts
     initQRcode(); // 初始化二维码
     initEcharts();
-    convert2canvas();
+    setTimeout(() => {
+      convert2canvas();
+    },0);
     function initQRcode() { // 初始化
       console.log(grobal);
       var img = new Image();
