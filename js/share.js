@@ -26,11 +26,11 @@ function initQRcode() { // 初始化
   document.querySelector('.message').innerHTML = `<div>我在${grobal.province}</div><div>我为湖北加油! 我为中国加油!</div>`;
   console.log(window.location);
   let clientWidth = document.body.clientWidth;
-  let QRcodeSize = clientWidth / 100 * 14.27;
+  let QRcodeSize = +clientWidth / 100 * 14.27;
   let QRcode =  new QRCode(document.querySelector(".QRcode"),{
                                                               text: window.location.href.replace('/share.html','/index.html'),
-                                                              width: QRcodeSize,
-                                                              height: QRcodeSize,
+                                                              width: +QRcodeSize,
+                                                              height: +QRcodeSize,
                                                               colorDark: '#000000',
                                                               colorLight: '#ffffff',
                                                               correctLevel: QRCode.CorrectLevel.H

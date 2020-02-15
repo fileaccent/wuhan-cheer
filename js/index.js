@@ -239,8 +239,8 @@
                   return colorList[index];
                 }
             }
-          },
-        },
+          }
+        }
       ]
     };
     myChart.setOption(option);
