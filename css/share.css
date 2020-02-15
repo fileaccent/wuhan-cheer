@@ -28,6 +28,7 @@ body {
   background: linear-gradient(135deg, #E7F4E3 10%, #E8F6F6 80%, #E7F4E3 100%);
   background-size: cover;
   background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 .message-box {
   width:90vw;
