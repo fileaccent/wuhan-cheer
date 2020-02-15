@@ -37,8 +37,11 @@ function initQRcode() { // 初始化
                                                             });
   let canvaQRcode = document.querySelector('.QRcode > canvas');
   let imgQRcode = Canvas2Image.convertToImage(canvaQRcode, canvaQRcode.width, canvaQRcode.height, 'jpg');
-  document.querySelector('.QRcode').removeChild(canva);
-  document.querySelector('.QRcode').append(imgQRcode);
+  imgQRcode.style.cssText = `
+    width:14.27vw;
+    height:14.27vw;
+  `
+  document.querySelector('.QRcode').removeChild(canvaQRcode);
 }
 document.body.ontouchstart = function () {
   convert2canvas();
