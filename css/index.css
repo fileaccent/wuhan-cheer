@@ -153,12 +153,12 @@ body {
 .chear-box {
   width:90vw;
   height:30vw;
+  margin:0 auto;
+  margin-top:30vw;
   display:flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  position:fixed;
-  left:5vw;
 }
 .chear-box > div {
   margin:0 auto;

@@ -152,7 +152,7 @@
   initEcharts(); // 初始化
   function setStyle () {
     let clientHeight = document.body.clientHeight;
-    document.querySelector('.chear-box').style.top = `calc(${clientHeight}px - 35vw)`;
+    document.querySelector('.chear-box').style.marginTop = `calc(${clientHeight}px - 177vw)`;
     document.querySelector('.bbt-img').style.top = `calc(${clientHeight}px - 21.44vw)`;
   }
   // 初始化echarts
