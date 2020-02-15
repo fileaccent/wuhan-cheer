@@ -136,10 +136,35 @@
     let provinces = ['shanghai', 'hebei', 'shanxi', 'neimenggu', 'liaoning', 'jilin', 'heilongjiang', 'jiangsu', 'zhejiang', 'anhui', 'fujian', 'jiangxi', 'shandong', 'henan', 'hubei', 'hunan', 'guangdong', 'guangxi', 'hainan', 'sichuan', 'guizhou', 'yunnan', 'xizang', 'shanxi1', 'gansu', 'qinghai', 'ningxia', 'xinjiang', 'beijing', 'tianjin', 'chongqing', 'xianggang', 'aomen'];
 
     let provincesText = ['上海', '河北', '山西', '内蒙古', '辽宁', '吉林', '黑龙江', '江苏', '浙江', '安徽', '福建', '江西', '山东', '河南', '湖北', '湖南', '广东', '广西', '海南', '四川', '贵州', '云南', '西藏', '陕西', '甘肃', '青海', '宁夏', '新疆', '北京', '天津', '重庆', '香港', '澳门'];
-
+    // 初始化echarts
+    initQRcode(); // 初始化二维码
     initEcharts();
     convert2canvas();
-    // 初始化echarts
+    function initQRcode() { // 初始化
+      console.log(grobal);
+      var img = new Image();
+      // 关键点，设置crossOriginal属性
+      img.setAttribute('crossOrigin', 'anonymous');
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext('2d');
+      img.src = grobal.avatar;
+      img.onload = function () {
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx.drawImage(img, 0, 0);
+      }
+      //document.querySelector('.portait > img').setAttribute('src', grobal.avatar);
+      document.querySelector('.message').innerHTML = `<div>我在${grobal.province}</div><div>我为湖北加油! 我为中国加油!</div>`;
+      console.log(window.location);
+     let QRcode =  new QRCode(document.querySelector(".QRcode"),{
+                                                                  text: 'https://' + window.location.host + '/index.html',
+                                                                  width: 100,
+                                                                  height: 100,
+                                                                  colorDark: '#000000',
+                                                                  colorLight: '#ffffff',
+                                                                  correctLevel: QRCode.CorrectLevel.H
+                                                                });
+    }
     function initEcharts() {
       let option = {
         series: [
@@ -207,33 +232,6 @@
       myChart.setOption(option);
       myChart.off("click");
     }
-    init(); // 初始化二维码
-    function init() { // 初始化
-      console.log(grobal);
-      var img = new Image();
-      // 关键点，设置crossOriginal属性
-      img.setAttribute('crossOrigin', 'anonymous');
-      var canvas = document.getElementById("canvas");
-      var ctx = canvas.getContext('2d');
-      img.src = grobal.avatar;
-      img.onload = function () {
-        canvas.width = img.width;
-        canvas.height = img.height;
-        ctx.drawImage(img, 0, 0);
-      }
-      //document.querySelector('.portait > img').setAttribute('src', grobal.avatar);
-      document.querySelector('.message').innerHTML = `<div>我在${grobal.province}</div><div>我为湖北加油! 我为中国加油!</div>`;
-      console.log(window.location);
-     let QRcode =  new QRCode(document.querySelector(".QRcode"),{
-                                                                  text: window.location.host + '/index.html',
-                                                                  width: 100,
-                                                                  height: 100,
-                                                                  colorDark: '#000000',
-                                                                  colorLight: '#ffffff',
-                                                                  correctLevel: QRCode.CorrectLevel.H
-                                                                });
-    }
-
     function convert2canvas() {
       // 获取需要转化的dom对象 直接使用$('.wrap')选取的为jquery对象 无法继续操作
       var cntElem = document.body;
