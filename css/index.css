@@ -158,7 +158,6 @@ body {
   justify-content: space-around;
   align-items: center;
   position:fixed;
-  top:130vw;
   left:5vw;
 }
 .chear-box > div {
@@ -205,6 +204,5 @@ body {
   width:11.05vw;
   height:16.44vw;
   position:fixed;
-  top:140vw;
   right:4.31vw;
 }

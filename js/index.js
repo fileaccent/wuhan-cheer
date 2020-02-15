@@ -147,8 +147,14 @@
 {id: 35, name: "海外"}
 ]
 
-  initEcharts(); // 初始化
 
+  setStyle();
+  initEcharts(); // 初始化
+  function setStyle () {
+    let clientHeight = document.body.clientHeight;
+    document.querySelector('.chear-box').style.top = `calc(${clientHeight}px - 35vw)`;
+    document.querySelector('.bbt-img').style.top = `calc(${clientHeight}px - 21.44vw)`;
+  }
   // 初始化echarts
   function initEcharts() {
     let tmpSeriesData = seriesData;
