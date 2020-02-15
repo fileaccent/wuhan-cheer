@@ -1,0 +1,98 @@
+img {
+  width:100%;
+  height:100%;
+}
+* {
+  padding:0;
+  margin:0;
+  outline:none;
+  box-sizing:border-box;
+  user-select:none;
+}
+@font-face {
+  font-family: 'txxc';
+  font-weight: normal;
+  font-style: normal;
+  src: url('../ttf/腾祥细潮黑简.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'hxb';
+  font-weight: normal;
+  font-style: normal;
+  src: url('../ttf/HuXiaoBoNanShenTi-2.otf') format('truetype');
+}
+body {
+  width:100vw;
+  height:100vh;
+  overflow-y:auto;
+  background: linear-gradient(135deg, #E7F4E3 10%, #E8F6F6 80%, #E7F4E3 100%);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.message-box {
+  width:90vw;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin:0 auto;
+  padding-top:11.42vw;
+}
+.portait {
+  width:19.67vw;
+  height:19.67vw;
+  border-radius: 50%;
+  overflow:hidden;
+}
+#canvas {
+  width:100%;
+  height:100%;
+}
+.message {
+  margin: 9 auto;
+  text-align: center;
+  font-family: 'hxb';
+  margin-top:4.04vw;
+}
+.message > div:nth-child(1) {
+  font-size:6.47vw;
+  color:#5b5b5b;
+}
+.message > div:nth-child(2) {
+  font-size:4.04vw;
+  color:#bb2525;
+  margin-top:2.16vw;
+}
+#china-map {
+  padding:0;
+  margin:0;
+  width: 80vw;
+  height: 80vw;
+  margin: 0 auto;
+  z-index:-1;
+  margin-top:2vw;
+}
+.share-box {
+  width:24.29vw;
+  height:24.29vw;
+  font-size:3.23vw;
+  font-family: 'hxb';
+  position:absolute;
+  top:110vw;
+  right:12.53vw;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.QRcode {
+  width:14.29vw;
+  height:14.29vw;
+}
+.bbt-image {
+  width:12.26vw;
+  height:17.79vw;
+  position:absolute;
+  top:113vw;
+  left:12vw;
+}
