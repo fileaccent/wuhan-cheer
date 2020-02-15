@@ -3,6 +3,7 @@
   margin:0;
   outline:none;
   box-sizing:border-box;
+  user-select:none;
 }
 img {
   width:100%;
@@ -156,9 +157,9 @@ body {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  margin:0 auto;
-  position:relative;
-  top:-23vw;
+  position:absolute;
+  top:calc(100vh - 40vw);
+  left:5vw;
 }
 .chear-box > div {
   margin:0 auto;
@@ -198,11 +199,12 @@ body {
   border-radius: 2vw;
   font-size:4.04vw;
   line-height:9.43vw;
+  cursor: pointer;
 }
 .bbt-img {
   width:11.05vw;
   height:16.44vw;
   position:absolute;
-  top:148vw;
+  bottom:5vw;
   right:4.31vw;
 }

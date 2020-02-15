@@ -143,7 +143,8 @@
 {id: 31, name: "宁夏"},
 {id: 32, name: "新疆"},
 {id: 33, name: "香港"},
-{id: 34, name: "澳门"}
+{id: 34, name: "澳门"},
+{id: 35, name: "海外"}
 ]
 
   initEcharts(); // 初始化
@@ -310,6 +311,8 @@
       let name;
       if (/省/.test(item.name)) {
         name = item.name.replace('省','');
+      } else if (/市/.test(item.name)) {
+        name = item.name.replace('市','');
       } else {
         name = item.name
       }
@@ -379,10 +382,31 @@
       })
       .then((data) => {
         console.log(data);
+        document.querySelector('.input-box > input').value="";
+        window.
         location = './share.html';
         window.sessionStorage.setItem('grobal', JSON.stringify(grobal));
       })
     } else {
+      if (postMessageParams.content.length >= 22) {
+        let div = document.createElement('div');
+        div.style.cssText = `
+        padding:2vw;
+        font-size:3vw;
+        color:white;
+        background-color:black;
+        position:absolute;
+        bottom:5vw;
+        left:50%;
+        transform:translate(-50%, -50%);
+        border-radius:2vw;
+        `;
+        div.innerHTML='字数太多了哦';
+        document.body.append(div);
+        setTimeout(() => {
+          document.body.removeChild(div);
+        }, 2000);
+      }
       console.log('正在获取省份中');
     }
   }
@@ -413,7 +437,19 @@ function setBarrage (message) {
   };
   for (let i = 0; i < 4; i++) {
     //barrage[i].removeChild(document.querySelectorAll('.barrage-item'));
-    document.querySelectorAll('.barrage')[i].innerHTML = '<div></div>';
+    if(i%2) {
+      document.querySelectorAll('.barrage')[i].innerHTML = `
+      <div>
+        
+      </div>
+      `;
+    } else {
+      document.querySelectorAll('.barrage')[i].innerHTML = `
+      <div>
+        <div class="barrage-item" style="background-color: rgba(0,0,0,0)"></div>
+      </div>
+      `;
+    }
     console.log('数据清空!');
     console.log(document.querySelectorAll('.barrage')[i]);
   }

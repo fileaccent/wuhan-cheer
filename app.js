@@ -13,7 +13,7 @@ let server = http.createServer(function(request,response) {
     "avatar": "http://thirdwx.qlogo.cn/mmopen/vi_32/P1xp3zWqiclAbzCnmiazulWBwKfBUBBZFvVQmKppnz4hQCibMq3SBQShj9t59ypBzVSYsfkMibqmmd53CJz2vP308Q/132",
     "latitude":35.54303,
     "longitude":106.6653,
-    "province_id": 1,
+    "province_id": 35,
     "province": 
     [
       {

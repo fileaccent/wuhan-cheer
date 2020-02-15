@@ -80,7 +80,7 @@ function initEcharts() {
         },
         markPoint: { //图表标注。
           symbol: 'circle',
-          symbolSize: 14,//图形大小
+          symbolSize: 8,//图形大小
           label: {
               normal: {
                 show: false,
@@ -91,7 +91,14 @@ function initEcharts() {
           },
           itemStyle: {
             normal: {
-              color: 'rgba(172,50,28,1)'
+              color: 
+              (function () {
+                if(grobal.province_id !== 35 && grobal.province !== "海外") {
+                  return 'rgba(172,50,28,1)'
+                } else {
+                  return 'rgba(0, 0, 0, 0)'
+                }
+              })(),
             }
           },
           data: (function () {
