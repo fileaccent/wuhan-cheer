@@ -73,13 +73,13 @@ function initEcharts() {
         itemStyle: {
           normal: {
             borderWidth: .5,//区域边框宽度
-            borderColor: '#0550c3',//区域边框颜色
-            color: '#fff'
+            borderColor: '#e5eabc',//区域边框颜色
+            color: '#eeeeee'
           },
           emphasis: {
             borderWidth: .5,
-            borderColor: '#0550c3',
-            color: '#fff'
+            borderColor: '#e5eabc',
+            color: '#eeeeee'
           }
         },
         markPoint: { //图表标注。
