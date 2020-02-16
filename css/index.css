@@ -3,7 +3,6 @@
   margin:0;
   outline:none;
   box-sizing:border-box;
-  user-select:none;
 }
 img {
   width:100%;
@@ -46,6 +45,7 @@ body {
   justify-content: space-around;
   align-items: center;
   margin:0 auto;
+  user-select: none;
 }
 .head-title-box > div {
   text-align:center;
@@ -99,7 +99,8 @@ body {
   display:flex;
   flex-direction: column;
   justify-content: space-around;
-  pointer-events: none;
+  pointer-events: none; /* 点击穿透 */
+  user-select: none;
 }
 .barrage {
   width:100vw;
@@ -176,6 +177,7 @@ body {
   font-size:4.04vw;
   color: #5b5b5b;
   font-family: 'hxb';
+  user-select: none;
 }
 .input-box {
   width:60.242vw;
@@ -207,6 +209,7 @@ body {
   font-size:4.04vw;
   line-height:9.43vw;
   cursor: pointer;
+  user-select: none;
 }
 .bbt-img {
   width:11.05vw;
@@ -214,4 +217,5 @@ body {
   margin-right:4.31vw;
   margin-bottom:4vw;
   align-self: flex-end;
+  user-select: none;
 }
