@@ -251,7 +251,7 @@
   }
 
   // 请求部分
-  let rootUrl = 'http://llzhisu.cn:8080/'; // http://llzhisu.cn:8080/   http://localhost:8000/
+  let rootUrl = 'http://localhost:8000/'; // http://llzhisu.cn:8080/   http://localhost:8000/
   let encoded_uri = window.location.href;
   let id = '';
   let grobal = {
@@ -290,7 +290,7 @@
   }
 
   request('api/index',{ // 对 fetch 的封装
-    credentials: 'include',
+    //credentials: 'include',
   }) // 首页内容请求
   .then((data) => {
     console.log(data);
@@ -381,7 +381,7 @@
     if (grobal.province_id && postMessageParams.content.length < 22) {
       request('api/message', {
         method: 'POST',
-        credentials: 'include',
+        //credentials: 'include',
         body: `content=${postMessageParams.content}&province_id=${postMessageParams.province_id}`,
         headers: {
           "Content-Type":"application/x-www-form-urlencoded"
@@ -473,7 +473,7 @@ function setBarrage (message) {
   console.log(document.querySelectorAll('.barrage-item'));
   setTimeout(() => {
     request(`api/index/mes?last_id=${grobal.last_id}`, {
-      credentials: 'include',
+      //credentials: 'include',
     }) // 首页弹幕轮询
     .then((data) => {
       console.log(data);

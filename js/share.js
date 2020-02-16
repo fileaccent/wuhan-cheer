@@ -32,13 +32,17 @@ function initQRcode() { // 初始化
                                                               correctLevel: QRCode.CorrectLevel.H
                                                             });
   let canvaQRcode = document.querySelector('.QRcode > canvas');
-  let imgQRcode = Canvas2Image.convertToImage(canvaQRcode, canvaQRcode.width, canvaQRcode.height, 'jpg');
+  let imgQRcode = Canvas2Image.convertToImage(canvaQRcode, canvaQRcode.width, canvaQRcode.height);
   imgQRcode.style.cssText = `
     width:14.27vw;
     height:14.27vw;
+    display:block;
   `
+  console.log(imgQRcode);
   document.querySelector('.QRcode').removeChild(canvaQRcode);
   document.querySelector('.QRcode').append(imgQRcode);
+  document.querySelector('.QRcode').removeChild(document.querySelector('img'));
+
 }
 document.body.ontouchstart = function () {
   convert2canvas();
