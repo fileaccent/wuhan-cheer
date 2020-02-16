@@ -56,7 +56,7 @@ function initQRcode() { // 初始化
   console.log(imgQRcode);
   document.querySelector('.QRcode').removeChild(canvaQRcode);
   document.querySelector('.QRcode').append(imgQRcode);
-  document.querySelector('.QRcode').removeChild(document.querySelector('img'));
+  document.querySelector('.QRcode').removeChild(document.querySelector('.QRcode img'));
 
 }
 function initEcharts() {
