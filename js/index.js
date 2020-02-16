@@ -202,8 +202,10 @@
 
   initEcharts(); // 初始化
   function setStyle () {
+    let clientWidth = document.body.clientWidth;
     let clientHeight = document.body.clientHeight;
     document.querySelector('.foot-box').style.marginTop = `calc(${clientHeight}px - 182vw)`;
+    document.querySelector('.barrage-box').style.top = `${+clientWidth / 100 * 55}px`
   }
   // 初始化echarts
   function initEcharts() {

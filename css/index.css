@@ -96,7 +96,7 @@ body {
   width:100vw;
   height:40vw;
   float:left;
-  position:position;
+  position:fixed;
   top: 55vw;
   left:0;
   display:flex;
