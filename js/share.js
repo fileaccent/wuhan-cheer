@@ -10,8 +10,13 @@ let provinces = ['shanghai', 'hebei', 'shanxi', 'neimenggu', 'liaoning', 'jilin'
 let provincesText = ['上海', '河北', '山西', '内蒙古', '辽宁', '吉林', '黑龙江', '江苏', '浙江', '安徽', '福建', '江西', '山东', '河南', '湖北', '湖南', '广东', '广西', '海南', '四川', '贵州', '云南', '西藏', '陕西', '甘肃', '青海', '宁夏', '新疆', '北京', '天津', '重庆', '香港', '澳门'];
 // 初始化echarts
 initQRcode(); // 初始化二维码
+
 initEcharts();
+
 sessionStorage.setItem("need-refresh", true);
+
+convert2canvas();
+
 function initQRcode() { // 初始化
   console.log(grobal);
   var img = new Image();
@@ -46,10 +51,6 @@ function initQRcode() { // 初始化
   document.querySelector('.QRcode').append(imgQRcode);
   document.querySelector('.QRcode').removeChild(document.querySelector('img'));
 
-}
-document.body.ontouchstart = function () {
-  convert2canvas();
-  document.body.ontouchstart = null;
 }
 function initEcharts() {
   let option = {
