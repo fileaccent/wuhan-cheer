@@ -34,7 +34,7 @@ function initQRcode() { // 初始化
   portaitImg.style.cssText = 
   'width:100%;height:100%;'
   ;
-  document.querySelector('.portait').removeChild(canvas);
+  document.querySelector('.portait').removeChild(document.querySelector('.portait > canvas'));
   document.querySelector('.portait').append(portaitImg);
   document.querySelector('.portait').append(document.querySelector('img'));
   //document.querySelector('.portait > img').setAttribute('src', grobal.avatar);
