@@ -200,7 +200,7 @@ function convert2canvas() {
     top:0;
     left:0;
     z-index:999;
-    /*opacity:0;*/
+    opacity:0;
     `
     console.log(img);
     document.body.append(img);
