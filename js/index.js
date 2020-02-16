@@ -147,7 +147,9 @@
 {id: 35, name: "海外"}
 ]
 
-
+window.addEventListener("pageshow", function(){
+  location.reload();
+});
   setStyle();
   initEcharts(); // 初始化
   function setStyle () {
