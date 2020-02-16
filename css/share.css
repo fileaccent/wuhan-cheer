@@ -8,6 +8,7 @@ img {
   outline:none;
   box-sizing:border-box;
   user-select:none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 @font-face {
   font-family: 'txxc';
