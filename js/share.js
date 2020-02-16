@@ -197,7 +197,7 @@ function convert2canvas() {
 
     // 【重要】默认转化的格式为png,也可设置为其他格式
     let imgUrl = canvas.toDataURL('jpg');
-    var img = dcoument.createElement('img');
+    var img = document.createElement('img');
     img.src=imgUrl;
     img.style.cssText = `
     width:100vw;
@@ -210,6 +210,5 @@ function convert2canvas() {
     `
     document.body.append(img);
     console.log(img);
-    document.body.append(img);
   })
 }
