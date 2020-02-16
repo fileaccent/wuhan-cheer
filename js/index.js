@@ -148,7 +148,10 @@
 ]
 
 window.addEventListener("pageshow", function(){
-  location.reload();
+  if(sessionStorage.getItem("need-refresh")){
+      location.reload();
+      sessionStorage.removeItem("need-refresh");
+  }
 });
   setStyle();
   initEcharts(); // 初始化

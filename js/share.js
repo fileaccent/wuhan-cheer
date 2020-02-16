@@ -9,6 +9,7 @@ let provincesText = ['上海', '河北', '山西', '内蒙古', '辽宁', '吉�
 // 初始化echarts
 initQRcode(); // 初始化二维码
 initEcharts();
+sessionStorage.setItem("need-refresh", true);
 function initQRcode() { // 初始化
   console.log(grobal);
   var img = new Image();
