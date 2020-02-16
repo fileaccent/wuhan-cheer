@@ -183,7 +183,7 @@ function convert2canvas() {
     height: height,
     dpi: 4, // 设置像素点,增加清晰度
     useCORS: true, // 【重要】开启跨域配置
-    scale:1 // 设置倍率
+    scale:0.5 // 设置倍率
   };
   // 开始转化为canvs对象
   html2canvas(shareContent, opts).then(function(canvas) {
