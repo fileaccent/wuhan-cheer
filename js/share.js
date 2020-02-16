@@ -181,7 +181,7 @@ function convert2canvas() {
     // logging: true, //日志开关，便于查看html2canvas的内部执行流程
     width: width, //dom 原始宽度
     height: height,
-    dpi: window.devicePixelRatio, // 设置像素点,增加清晰度
+    dpi: 4, // 设置像素点,增加清晰度
     useCORS: true, // 【重要】开启跨域配置
     scale:1 // 设置倍率
   };
