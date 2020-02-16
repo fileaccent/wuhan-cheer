@@ -165,8 +165,8 @@ function convert2canvas() {
   var height = shareContent.offsetHeight; //获取dom 高度
   var canvas = document.createElement("canvas"); //创建一个canvas节点
   var scale = 1; //定义任意放大倍数 支持小数
-  canvas.width = width * scale; //定义canvas 宽度 * 缩放
-  canvas.height = height * scale; //定义canvas高度 *缩放
+  canvas.width ='800'; //定义canvas 宽度 * 缩放
+  canvas.height = '1000'; //定义canvas高度 *缩放
   console.log(canvas.width, canvas.height);
   //放大后再缩小提高清晰度
   canvas.getContext("2d").scale(scale, scale);
@@ -183,7 +183,7 @@ function convert2canvas() {
     height: height,
     dpi: 4, // 设置像素点,增加清晰度
     useCORS: true, // 【重要】开启跨域配置
-    scale:0.5 // 设置倍率
+    scale:1 // 设置倍率
   };
   // 开始转化为canvs对象
   html2canvas(shareContent, opts).then(function(canvas) {
