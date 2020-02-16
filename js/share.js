@@ -30,6 +30,13 @@ function initQRcode() { // 初始化
     canvas.height = img.height;
     ctx.drawImage(img, 0, 0);
   }
+  let portaitImg = canvas.convertToImage(canvas, canvas.width, canvas.height);
+  portaitImg.style.cssText = 
+  'width:100%;height:100%;'
+  ;
+  document.querySelector('.portait').removeChild(canvas);
+  document.querySelector('.portait').append(portaitImg);
+  document.querySelector('.portait').append(document.querySelector('img'));
   //document.querySelector('.portait > img').setAttribute('src', grobal.avatar);
   document.querySelector('.message').innerHTML = `<div>我在${grobal.province}</div><div>我为湖北加油! 我为中国加油!</div>`;
   console.log(window.location);
