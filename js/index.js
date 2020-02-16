@@ -254,9 +254,9 @@ window.addEventListener("pageshow", function(){
 
     myChart.off("click");
   }
-
+  
   // 请求部分
-  let rootUrl = 'https://whcomeon.100steps.top/'; // http://llzhisu.cn:8080/   http://localhost:8000/
+  let rootUrl = 'https://whcomeon.100steps.top/'; // http://llzhisu.cn:8080/   http://localhost:8000/ 
   let encoded_uri = window.location.href;
   let id = '';
   let grobal = {
@@ -378,7 +378,7 @@ window.addEventListener("pageshow", function(){
     setBarrage(data.message); // 设置弹幕
      
   })
-  document.querySelector('.button').onclick = function () {
+  document.querySelector('.button').addEventListener('click', function () {
     let postMessageParams = {
       content: document.querySelector('.input-box > input').value || '奥里给',
       province_id: +grobal.province_id
@@ -421,7 +421,7 @@ window.addEventListener("pageshow", function(){
       }
       console.log('正在获取省份中');
     }
-  }
+  })
 
 function request (url, setting={}) {
   return fetch(rootUrl + url, setting)
