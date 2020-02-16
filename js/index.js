@@ -1,8 +1,52 @@
 (function () {
+
+  document.getElementById('button').addEventListener('click', function () { // 收集数据, 跳转到share
+    let postMessageParams = {
+      content: document.querySelector('.input-box > input').value || '奥里给',
+      province_id: +grobal.province_id
+    }
+    if (grobal.province_id && postMessageParams.content.length < 22) {
+      request('api/message', {
+        method: 'POST',
+        credentials: 'include',
+        body: `content=${postMessageParams.content}&province_id=${postMessageParams.province_id}`,
+        headers: {
+          "Content-Type":"application/x-www-form-urlencoded"
+        }
+      })
+      .then((data) => {
+        console.log(data);
+        document.querySelector('.input-box > input').value="";
+        window.
+        location = './share.html';
+        window.sessionStorage.setItem('grobal', JSON.stringify(grobal));
+      })
+    } else {
+      if (postMessageParams.content.length >= 22) {
+        let div = document.createElement('div');
+        div.style.cssText = `
+        padding:2vw;
+        font-size:3vw;
+        color:white;
+        background-color:black;
+        position:absolute;
+        bottom:5vw;
+        left:50%;
+        transform:translate(-50%, -50%);
+        border-radius:2vw;
+        `;
+        div.innerHTML='字数太多了哦';
+        document.body.append(div);
+        setTimeout(() => {
+          document.body.removeChild(div);
+        }, 2000);
+      }
+      console.log('正在获取省份中');
+    }
+  })
+  // 中国地图部分
   let myChart = echarts.init(document.getElementById('china-map'));
-
   let colorList = ['#1f6d8e', '#33a4af', '#70d4de','#bce6ea', '#e5eabc', '#eeeeee'];
-
   let seriesData = [{
     name: '北京',
     value: 0
@@ -110,50 +154,52 @@
     value: 0
   }];
   let findProvinceId = [
-{id: 1, name: "北京市"},
-{id: 2, name: "天津市"},
-{id: 3, name: "上海市"},
-{id: 4, name: "重庆市"},
-{id: 5, name: "河北省"},
-{id: 6, name: "山西省"},
-{id: 7, name: "辽宁省"},
-{id: 8, name: "吉林省"},
-{id: 9, name: "黑龙江省"},
-{id: 10, name: "江苏省"},
-{id: 11, name: "浙江省"},
-{id: 12, name: "安徽省"},
-{id: 13, name: "福建省"},
-{id: 14, name: "江西省"},
-{id: 15, name: "山东省"},
-{id: 16, name: "河南省"},
-{id: 17, name: "湖北省"},
-{id: 18, name: "湖南省"},
-{id: 19, name: "广东省"},
-{id: 20, name: "海南省"},
-{id: 21, name: "四川省"},
-{id: 22, name: "贵州省"},
-{id: 23, name: "云南省"},
-{id: 24, name: "陕西省"},
-{id: 25, name: "甘肃省"},
-{id: 26, name: "青海省"},
-{id: 27, name: "台湾省"},
-{id: 28, name: "内蒙古"},
-{id: 29, name: "广西"},
-{id: 30, name: "西藏"},
-{id: 31, name: "宁夏"},
-{id: 32, name: "新疆"},
-{id: 33, name: "香港"},
-{id: 34, name: "澳门"},
-{id: 35, name: "海外"}
-]
+    {id: 1, name: "北京市"},
+    {id: 2, name: "天津市"},
+    {id: 3, name: "上海市"},
+    {id: 4, name: "重庆市"},
+    {id: 5, name: "河北省"},
+    {id: 6, name: "山西省"},
+    {id: 7, name: "辽宁省"},
+    {id: 8, name: "吉林省"},
+    {id: 9, name: "黑龙江省"},
+    {id: 10, name: "江苏省"},
+    {id: 11, name: "浙江省"},
+    {id: 12, name: "安徽省"},
+    {id: 13, name: "福建省"},
+    {id: 14, name: "江西省"},
+    {id: 15, name: "山东省"},
+    {id: 16, name: "河南省"},
+    {id: 17, name: "湖北省"},
+    {id: 18, name: "湖南省"},
+    {id: 19, name: "广东省"},
+    {id: 20, name: "海南省"},
+    {id: 21, name: "四川省"},
+    {id: 22, name: "贵州省"},
+    {id: 23, name: "云南省"},
+    {id: 24, name: "陕西省"},
+    {id: 25, name: "甘肃省"},
+    {id: 26, name: "青海省"},
+    {id: 27, name: "台湾省"},
+    {id: 28, name: "内蒙古"},
+    {id: 29, name: "广西"},
+    {id: 30, name: "西藏"},
+    {id: 31, name: "宁夏"},
+    {id: 32, name: "新疆"},
+    {id: 33, name: "香港"},
+    {id: 34, name: "澳门"},
+    {id: 35, name: "海外"}
+  ]
 
-window.addEventListener("pageshow", function(){
-  if(sessionStorage.getItem("need-refresh")){
-      location.reload();
-      sessionStorage.removeItem("need-refresh");
-  }
-});
+  window.addEventListener("pageshow", function(){
+    if(sessionStorage.getItem("need-refresh")){
+        location.reload();
+        sessionStorage.removeItem("need-refresh");
+    }
+  });
+
   setStyle();
+
   initEcharts(); // 初始化
   function setStyle () {
     let clientHeight = document.body.clientHeight;
@@ -254,7 +300,8 @@ window.addEventListener("pageshow", function(){
 
     myChart.off("click");
   }
-  
+
+
   // 请求部分
   let rootUrl = 'https://whcomeon.100steps.top/'; // http://llzhisu.cn:8080/   http://localhost:8000/ 
   let encoded_uri = window.location.href;
@@ -266,7 +313,8 @@ window.addEventListener("pageshow", function(){
     province_id: '',
     latitude: 0,
     longitude: 0,
-    last_id:0
+    last_id:0,
+    option: '',
   };
   let messages = [
 
@@ -293,7 +341,7 @@ window.addEventListener("pageshow", function(){
       }
     })
   }
-
+  
   request('api/index',{ // 对 fetch 的封装
     credentials: 'include',
   }) // 首页内容请求
@@ -334,6 +382,7 @@ window.addEventListener("pageshow", function(){
       }
     })
     console.log(option);
+    grobal.option = option;
     let total = option.reduce((total,item) => {
       return total + +item.value;
     },0);
@@ -374,120 +423,76 @@ window.addEventListener("pageshow", function(){
       }]
     });
     myChart.off("click");
-    //initEcharts(); // 重新初始化
+    
     setBarrage(data.message); // 设置弹幕
      
   })
-  document.querySelector('.button').addEventListener('click', function () {
-    let postMessageParams = {
-      content: document.querySelector('.input-box > input').value || '奥里给',
-      province_id: +grobal.province_id
+
+  function request (url, setting={}) {
+    return fetch(rootUrl + url, setting)
+    .then((res)=> {
+      if (res.status === 401) {
+        console.log('重新登录');
+        window.location = rootUrl + `/auth/jump?redirect=${encoded_uri}`;
+      } else {
+        return res.json();
+      }
+    })
+    .catch(err=> {
+      console.log(err);
+    })
+  }
+
+  function setBarrage (message) {
+    messages = messages.concat(message);
+    let barrage = document.querySelectorAll('.barrage'); // 输入弹幕
+    function parseDom(arg) {
+  　　 var objE = document.createElement("div");
+  　　 objE.innerHTML = arg;
+      let obj = objE.children;
+  　　 return objE.children;
+    };
+    for (let i = 0; i < 4; i++) {
+      //barrage[i].removeChild(document.querySelectorAll('.barrage-item'));
+      if(i%2) {
+        document.querySelectorAll('.barrage')[i].innerHTML = `
+        <div>
+          
+        </div>
+        `;
+      } else {
+        document.querySelectorAll('.barrage')[i].innerHTML = `
+        <div>
+          <div class="barrage-item" style="background-color: rgba(0,0,0,0)"></div>
+        </div>
+        `;
+      }
+      console.log('数据清空!');
+      console.log(document.querySelectorAll('.barrage')[i]);
     }
-    if (grobal.province_id && postMessageParams.content.length < 22) {
-      request('api/message', {
-        method: 'POST',
+    for (let i = 0;i < messages.length; i++) {
+      barrage[i % 4].children[0].append(...parseDom(`
+        <div class="barrage-item">
+          <div class="portait"><img src="${message[i].user_avatar}"/></div>
+          <div class="text">${message[i].content}</div>
+        </div>
+      `))
+    }
+    messages.splice(0,16);
+    console.log(messages);
+    console.log(document.querySelectorAll('.barrage-item'));
+    setTimeout(() => {
+      request(`api/index/mes?last_id=${grobal.last_id}`, {
         credentials: 'include',
-        body: `content=${postMessageParams.content}&province_id=${postMessageParams.province_id}`,
-        headers: {
-          "Content-Type":"application/x-www-form-urlencoded"
-        }
-      })
+      }) // 首页弹幕轮询
       .then((data) => {
         console.log(data);
-        document.querySelector('.input-box > input').value="";
-        window.
-        location = './share.html';
-        window.sessionStorage.setItem('grobal', JSON.stringify(grobal));
+        console.log(data.message);
+        grobal.last_id = data.message[data.message.length - 1].id;
+        message = data.message;
+        console.log(message);
+        setBarrage(message);
       })
-    } else {
-      if (postMessageParams.content.length >= 22) {
-        let div = document.createElement('div');
-        div.style.cssText = `
-        padding:2vw;
-        font-size:3vw;
-        color:white;
-        background-color:black;
-        position:absolute;
-        bottom:5vw;
-        left:50%;
-        transform:translate(-50%, -50%);
-        border-radius:2vw;
-        `;
-        div.innerHTML='字数太多了哦';
-        document.body.append(div);
-        setTimeout(() => {
-          document.body.removeChild(div);
-        }, 2000);
-      }
-      console.log('正在获取省份中');
-    }
-  })
-
-function request (url, setting={}) {
-  return fetch(rootUrl + url, setting)
-  .then((res)=> {
-    if (res.status === 401) {
-      console.log('重新登录');
-      window.location = rootUrl + `/auth/jump?redirect=${encoded_uri}`;
-    } else {
-      return res.json();
-    }
-  })
-  .catch(err=> {
-    console.log(err);
-  })
-}
-
-function setBarrage (message) {
-  messages = messages.concat(message);
-  let barrage = document.querySelectorAll('.barrage'); // 输入弹幕
-  function parseDom(arg) {
-　　 var objE = document.createElement("div");
-　　 objE.innerHTML = arg;
-    let obj = objE.children;
-　　 return objE.children;
-  };
-  for (let i = 0; i < 4; i++) {
-    //barrage[i].removeChild(document.querySelectorAll('.barrage-item'));
-    if(i%2) {
-      document.querySelectorAll('.barrage')[i].innerHTML = `
-      <div>
-        
-      </div>
-      `;
-    } else {
-      document.querySelectorAll('.barrage')[i].innerHTML = `
-      <div>
-        <div class="barrage-item" style="background-color: rgba(0,0,0,0)"></div>
-      </div>
-      `;
-    }
-    console.log('数据清空!');
-    console.log(document.querySelectorAll('.barrage')[i]);
+    }, 28000)
   }
-  for (let i = 0;i < messages.length; i++) {
-    barrage[i % 4].children[0].append(...parseDom(`
-      <div class="barrage-item">
-        <div class="portait"><img src="${message[i].user_avatar}"/></div>
-        <div class="text">${message[i].content}</div>
-      </div>
-    `))
-  }
-  messages.splice(0,16);
-  console.log(messages);
-  console.log(document.querySelectorAll('.barrage-item'));
-  setTimeout(() => {
-    request(`api/index/mes?last_id=${grobal.last_id}`, {
-      credentials: 'include',
-    }) // 首页弹幕轮询
-    .then((data) => {
-      console.log(data);
-      console.log(data.message);
-      grobal.last_id = data.message[data.message.length - 1].id;
-      message = data.message;
-      console.log(message);
-      setBarrage(message);
-    })
-  }, 28000)
-}
 })();

@@ -3,6 +3,8 @@ let myChart = echarts.init(document.getElementById('china-map'));
 
 let grobal = JSON.parse(window.sessionStorage.getItem('grobal'));
 
+let colorList = ['#1f6d8e', '#33a4af', '#70d4de','#bce6ea', '#e5eabc', '#eeeeee'];
+
 let provinces = ['shanghai', 'hebei', 'shanxi', 'neimenggu', 'liaoning', 'jilin', 'heilongjiang', 'jiangsu', 'zhejiang', 'anhui', 'fujian', 'jiangxi', 'shandong', 'henan', 'hubei', 'hunan', 'guangdong', 'guangxi', 'hainan', 'sichuan', 'guizhou', 'yunnan', 'xizang', 'shanxi1', 'gansu', 'qinghai', 'ningxia', 'xinjiang', 'beijing', 'tianjin', 'chongqing', 'xianggang', 'aomen'];
 
 let provincesText = ['上海', '河北', '山西', '内蒙古', '辽宁', '吉林', '黑龙江', '江苏', '浙江', '安徽', '福建', '江西', '山东', '河南', '湖北', '湖南', '广东', '广西', '海南', '四川', '贵州', '云南', '西藏', '陕西', '甘肃', '青海', '宁夏', '新疆', '北京', '天津', '重庆', '香港', '澳门'];
@@ -120,6 +122,41 @@ function initEcharts() {
     ]
   };
   myChart.setOption(option);
+  myChart.setOption({
+    series:[{
+      name: '中国',
+      data: grobal.option,
+      itemStyle: {
+        normal: {
+          areaColor: 
+            function (params) { // 设置颜色
+              let itemValue = params.data.value;
+              let index = 0;
+              if (itemValue > 10000) index = 0;
+              else if (itemValue > 1000) index = 1;
+              else if (itemValue > 100) index =2;
+              else if (itemValue > 10) index = 3;
+              else index = 4;
+              return colorList[index];
+            }
+        },
+        emphasis: {
+          borderWidth: .5,
+          borderColor: '#0550c3',
+          color: function (params) { // 设置颜色
+              let itemValue = params.data.value;
+              let index = 0;
+              if (itemValue > 10000) index = 0;
+              else if (itemValue > 1000) index = 1;
+              else if (itemValue > 100) index =2;
+              else if (itemValue > 10) index = 3;
+              else index = 4;
+              return colorList[index];
+            }
+        }
+      },
+    }]
+  });
   myChart.off("click");
 }
 function convert2canvas() {
