@@ -1,7 +1,7 @@
 (function () {
   let myChart = echarts.init(document.getElementById('china-map'));
 
-  let colorList = ['#5475f5', '#9feaa5', '#85daef','#74e2ca', '#e6ac53', '#9fb5ea'];
+  let colorList = ['#1f6d8e', '#33a4af', '#70d4de','#bce6ea', '#e5eabc'];
 
   let seriesData = [{
     name: '北京',
@@ -177,8 +177,7 @@
         },
         splitList: [   
           {start: 10000, end:Infinity},{start: 1000, end: 9999},  
-          {start: 100, end: 999},{start: 10, end: 99},  
-          {start: 0, end: 10},  
+          {start: 100, end: 999},{start: 0, end: 99}, 
         ],  
         color: colorList  
       },
@@ -211,7 +210,7 @@
           itemStyle: {
             normal: {
               borderWidth: .5,//区域边框宽度
-              borderColor: '#0550c3',//区域边框颜色
+              borderColor: '#e1e596',//区域边框颜色
               color: 
                 function (params) { // 设置颜色
                   let itemValue = params.data.value;
@@ -219,14 +218,13 @@
                   if (itemValue > 10000) index = 0;
                   else if (itemValue > 1000) index = 1;
                   else if (itemValue > 100) index =2;
-                  else if (itemValue > 10) index = 3;
-                  else index = 4;
+                  else  index = 3;
                   return colorList[index];
                 }
             },
             emphasis: {
               borderWidth: .5,
-              borderColor: '#0550c3',
+              borderColor: '#e1e596',
               color:
                 function (params) { // 设置颜色
                   let itemValue = params.data.value;
@@ -234,8 +232,7 @@
                   if (itemValue > 10000) index = 0;
                   else if (itemValue > 1000) index = 1;
                   else if (itemValue > 100) index =2;
-                  else if (itemValue > 10) index = 3;
-                  else index = 4;
+                  else index = 3;
                   return colorList[index];
                 }
             }

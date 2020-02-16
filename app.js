@@ -19,17 +19,22 @@ let server = http.createServer(function(request,response) {
       {
         "id": 1,
         "name": "北京市",
-        "mes_amount": 1000
+        "mes_amount": 1001
       },
       {
         "id": 2,
         "name": "天津市",
-        "mes_amount": 3000
+        "mes_amount": 10001
       },
       {
         "id": 3,
         "name": "上海市",
-        "mes_amount":5000
+        "mes_amount":101
+      },
+      {
+        "id": 4,
+        "name": "重庆市",
+        "mes_amount": 0
       }
     ],
     "message":
