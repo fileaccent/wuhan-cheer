@@ -96,8 +96,7 @@ body {
   width:100vw;
   height:40vw;
   float:left;
-  position:position;
-  top: 55vw;
+  position:absolute;
   left:0;
   display:flex;
   flex-direction: column;
