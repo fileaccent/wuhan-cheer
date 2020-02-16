@@ -22,7 +22,7 @@ function initQRcode() { // 初始化
   var img = new Image();
   // 关键点，设置crossOriginal属性
   img.setAttribute('crossOrigin', 'anonymous');
-  var canvas = document.getElementById("canvas");
+  var canvas = document.createElement("canvas");
   var ctx = canvas.getContext('2d');
   img.src = grobal.avatar;
   img.onload = function () {
