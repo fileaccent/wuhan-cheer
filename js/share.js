@@ -30,7 +30,7 @@ function initQRcode() { // 初始化
     canvas.height = img.height;
     ctx.drawImage(img, 0, 0);
   }
-  let portaitImg = canvas.convertToImage(canvas, canvas.width, canvas.height);
+  let portaitImg = Canvas2Image.convertToImage(canvas, canvas.width, canvas.height);
   portaitImg.style.cssText = 
   'width:100%;height:100%;'
   ;
