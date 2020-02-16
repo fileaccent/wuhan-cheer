@@ -251,7 +251,7 @@
   }
 
   // 请求部分
-  let rootUrl = 'http://llzhisu.cn:8080/'; // http://llzhisu.cn:8080/   http://localhost:8000/
+  let rootUrl = 'https://whcomeon.100steps.top/'; // http://llzhisu.cn:8080/   http://localhost:8000/
   let encoded_uri = window.location.href;
   let id = '';
   let grobal = {
@@ -272,7 +272,7 @@
       alert('获取地区信息失败,请刷新网页!');
       location = window.location.href;
     }
-    request('/index/reLocation', {
+    request('index/reLocation', {
       //credentials: 'include'
     }).then((res) => {
       return res.json()
