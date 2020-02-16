@@ -164,9 +164,9 @@ function convert2canvas() {
   var width = shareContent.offsetWidth; //获取dom 宽度
   var height = shareContent.offsetHeight; //获取dom 高度
   var canvas = document.createElement("canvas"); //创建一个canvas节点
-  var scale = 1; //定义任意放大倍数 支持小数
-  canvas.width ='800'; //定义canvas 宽度 * 缩放
-  canvas.height = '1000'; //定义canvas高度 *缩放
+  var scale = 2; //定义任意放大倍数 支持小数
+  canvas.width = String(+width * scale); //定义canvas 宽度 * 缩放
+  canvas.height = String(+height * scale); //定义canvas高度 *缩放
   console.log(canvas.width, canvas.height);
   //放大后再缩小提高清晰度
   canvas.getContext("2d").scale(scale, scale);
@@ -196,7 +196,7 @@ function convert2canvas() {
     context.imageSmoothingEnabled = false;
 
     // 【重要】默认转化的格式为png,也可设置为其他格式
-    let img = Canvas2Image.convertToImage(canvas, canvas.width, canvas.height, 'jpg');
+    let imgUrl = Canvas2Image.toDataURL(canvas, canvas.width, canvas.height, 'jpg');
     img.style.cssText = `
     width:100vw;
     height:100vh;
