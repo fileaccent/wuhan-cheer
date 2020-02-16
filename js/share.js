@@ -73,12 +73,12 @@ function initEcharts() {
         itemStyle: {
           normal: {
             borderWidth: .5,//区域边框宽度
-            borderColor: '#e5eabc',//区域边框颜色
+            borderColor: '#000',//区域边框颜色
             color: '#eeeeee'
           },
           emphasis: {
             borderWidth: .5,
-            borderColor: '#e5eabc',
+            borderColor: '#000',
             color: '#eeeeee'
           }
         },
