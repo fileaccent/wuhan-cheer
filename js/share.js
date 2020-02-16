@@ -14,9 +14,9 @@ initQRcode(); // 初始化二维码
 initEcharts();
 
 sessionStorage.setItem("need-refresh", true);
-document.body.ontouchmove = function () {
+document.body.ontouchstart = function () {
   convert2canvas();
-  document.body.ontouchmove = null;
+  document.body.ontouchstart = null;
 }
 
 function initQRcode() { // 初始化
