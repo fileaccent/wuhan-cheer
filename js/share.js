@@ -82,7 +82,7 @@ function initEcharts() {
         itemStyle: {
           normal: {
             borderWidth: .5,//区域边框宽度
-            borderColor: '#e1e596',//区域边框颜色
+            borderColor: '#000',//区域边框颜色
             color: 
               function (params) { // 设置颜色
                 let itemValue = params.data.value;
@@ -98,7 +98,7 @@ function initEcharts() {
           },
           emphasis: {
             borderWidth: .5,
-            borderColor: '#e1e596',
+            borderColor: '#000',
             color:
               function (params) { // 设置颜色
                 let itemValue = params.data.value;
