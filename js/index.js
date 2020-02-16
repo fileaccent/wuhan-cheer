@@ -303,7 +303,7 @@
 
 
   // 请求部分
-  let rootUrl = 'https://whcomeon.100steps.top/'; // http://llzhisu.cn:8080/   http://localhost:8000/ 
+  let rootUrl = 'https://whcomeon.100steps.top/'; // http://llzhisu.cn:8080/   http://localhost:8000/  https://whcomeon.100steps.top/
   let encoded_uri = window.location.href;
   let id = '';
   let grobal = {
@@ -423,7 +423,7 @@
       }]
     });
     myChart.off("click");
-    
+
     setBarrage(data.message); // 设置弹幕
      
   })

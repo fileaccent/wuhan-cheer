@@ -49,12 +49,14 @@ function initQRcode() { // 初始化
 }
 document.body.ontouchstart = function () {
   convert2canvas();
+  document.body.ontouchstart = null;
 }
 function initEcharts() {
   let option = {
     series: [
       {
         name: '中国',
+        data: grobal.option,
         type: 'map',
         mapType: 'china',
         roam: false,//是否开启鼠标缩放和平移漫游
@@ -80,13 +82,35 @@ function initEcharts() {
         itemStyle: {
           normal: {
             borderWidth: .5,//区域边框宽度
-            borderColor: '#000',//区域边框颜色
-            color: '#eeeeee'
+            borderColor: '#e1e596',//区域边框颜色
+            color: 
+              function (params) { // 设置颜色
+                let itemValue = params.data.value;
+                let index = 0;
+                if (itemValue > 5000) index = 0;
+                else if (itemValue > 1000) index = 1;
+                else if (itemValue > 100) index =2;
+                else if (itemValue > 10) index = 3;
+                else if (itemValue > 0) index = 4;
+                else index = 5;
+                return colorList[index];
+              }
           },
           emphasis: {
             borderWidth: .5,
-            borderColor: '#000',
-            color: '#eeeeee'
+            borderColor: '#e1e596',
+            color:
+              function (params) { // 设置颜色
+                let itemValue = params.data.value;
+                let index = 0;
+                if (itemValue > 5000) index = 0;
+                else if (itemValue > 1000) index = 1;
+                else if (itemValue > 100) index =2;
+                else if (itemValue > 10) index = 3;
+                else if (itemValue > 0) index = 4;
+                else index = 5;
+                return colorList[index];
+              }
           }
         },
         markPoint: { //图表标注。
@@ -122,41 +146,6 @@ function initEcharts() {
     ]
   };
   myChart.setOption(option);
-  myChart.setOption({
-    series:[{
-      name: '中国',
-      data: grobal.option,
-      itemStyle: {
-        normal: {
-          areaColor: 
-            function (params) { // 设置颜色
-              let itemValue = params.data.value;
-              let index = 0;
-              if (itemValue > 10000) index = 0;
-              else if (itemValue > 1000) index = 1;
-              else if (itemValue > 100) index =2;
-              else if (itemValue > 10) index = 3;
-              else index = 4;
-              return colorList[index];
-            }
-        },
-        emphasis: {
-          borderWidth: .5,
-          borderColor: '#0550c3',
-          color: function (params) { // 设置颜色
-              let itemValue = params.data.value;
-              let index = 0;
-              if (itemValue > 10000) index = 0;
-              else if (itemValue > 1000) index = 1;
-              else if (itemValue > 100) index =2;
-              else if (itemValue > 10) index = 3;
-              else index = 4;
-              return colorList[index];
-            }
-        }
-      },
-    }]
-  });
   myChart.off("click");
 }
 function convert2canvas() {

@@ -34,7 +34,7 @@ let server = http.createServer(function(request,response) {
       {
         "id": 4,
         "name": "重庆市",
-        "mes_amount": 0
+        "mes_amount": 1
       }
     ],
     "message":
