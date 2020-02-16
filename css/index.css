@@ -188,6 +188,8 @@ body {
   justify-content: center;
   align-items: center;
   border:1px solid rgb(131, 129, 129);
+  user-select:text !important;
+  -webkit-user-select:text !important;
 }
 .input-box > input {
   appearance:none;
