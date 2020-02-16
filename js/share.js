@@ -196,7 +196,9 @@ function convert2canvas() {
     context.imageSmoothingEnabled = false;
 
     // 【重要】默认转化的格式为png,也可设置为其他格式
-    let imgUrl = Canvas2Image.toDataURL(canvas, canvas.width, canvas.height, 'jpg');
+    let imgUrl = Canvas.toDataURL('jpg');
+    var img = dcoument.createElement('img');
+    img.src=imgUrl;
     img.style.cssText = `
     width:100vw;
     height:100vh;
@@ -206,6 +208,7 @@ function convert2canvas() {
     z-index:999;
     opacity:0;
     `
+    document.body.append(img);
     console.log(img);
     document.body.append(img);
   })
