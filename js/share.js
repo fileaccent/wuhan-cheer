@@ -14,8 +14,10 @@ initQRcode(); // 初始化二维码
 initEcharts();
 
 sessionStorage.setItem("need-refresh", true);
-
-convert2canvas();
+document.body.ontouchmove = function () {
+  convert2canvas();
+  document.body.ontouchmove = null;
+}
 
 function initQRcode() { // 初始化
   console.log(grobal);
