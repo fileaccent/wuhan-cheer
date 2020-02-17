@@ -218,6 +218,8 @@ body {
   border-radius: 2vw;
   font-size:4.04vw;
   line-height:9.43vw;
+  position:relative;
+  z-index:99;
   text-align:center;
   cursor: pointer;
 }

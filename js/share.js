@@ -196,7 +196,7 @@ function convert2canvas() {
     context.imageSmoothingEnabled = false;
 
     // 【重要】默认转化的格式为png,也可设置为其他格式
-    let imgUrl = canvas.toDataURL('jpg');
+    let imgUrl = canvas.toDataURL('jpg'); // 将图片在放大的canvas画出后,要导入url,不然图片只有一部分
     var img = document.createElement('img');
     img.src=imgUrl;
     img.style.cssText = `
