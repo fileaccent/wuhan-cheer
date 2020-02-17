@@ -37,6 +37,8 @@ body {
   height: 100vw;
   margin: 0 auto;
   margin-top:0vw;
+  position:relative;
+  z-index:-1;
 }
 .head-title-box {
   width:100vw;
