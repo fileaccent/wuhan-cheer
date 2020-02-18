@@ -166,7 +166,7 @@ body {
 }
 .chear-box {
   width:60.242vw;
-  height:30vw;
+  height:35vw;
   margin:0 auto;
   margin-left:20vw;
   display:flex;
@@ -179,9 +179,10 @@ body {
   text-align:center;
 }
 .ad {
-  font-size:4.04vw;
-  color: #5b5b5b;
-  font-family: 'hxb';
+  font-size:3.54vw;
+  line-height:6vw;
+  color: #3FA0A7;
+  font-family: 'txxc';
   user-select: none;
 }
 .input-box {
