@@ -123,6 +123,7 @@ body {
   display:flex;
   justify-content: space-around;
   align-items: center;
+  pointer-events: none;
 }
 .barrage > div:nth-child(2),.barrage > div:nth-child(4) {
   padding-left:50vw;
@@ -137,6 +138,7 @@ body {
   padding:5vw;
   margin-right:50vw;
   animation: 30s wordsLoop linear infinite;
+  pointer-events: none;
 } 
 @keyframes wordsLoop {
   0% {
