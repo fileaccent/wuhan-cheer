@@ -46,7 +46,7 @@
   })
   // 中国地图部分
   let myChart = echarts.init(document.getElementById('china-map'));
-  let colorList = ['#1f6d8e', '#33a4af', '#70d4de','#bce6ea', '#e5eabc', '#eeeeee'];
+  let colorList = ['#29454c', '#4c6b73', '#819d9e','#b2ced8', '#ced3e0', '#eeeeee'];
   let seriesData = [{
     name: '北京',
     value: 0
