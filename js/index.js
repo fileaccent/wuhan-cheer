@@ -8,7 +8,7 @@
     if (grobal.province_id && postMessageParams.content.length < 22) {
       request('api/message', {
         method: 'POST',
-        credentials: 'include',
+        //credentials: 'include',
         body: `content=${postMessageParams.content}&province_id=${postMessageParams.province_id}`,
         headers: {
           "Content-Type":"application/x-www-form-urlencoded"
@@ -46,7 +46,7 @@
   })
   // 中国地图部分
   let myChart = echarts.init(document.getElementById('china-map'));
-  let colorList = ['#29454c', '#4c6b73', '#819d9e','b2ced8v', '#vced3e0', '#eeeeee'];
+  let colorList = ['#29454c', '#4c6b73', '#819d9e','#b2ced8v', '#vced3e0', '#eeeeee'];
   let seriesData = [{
     name: '北京',
     value: 0
@@ -152,6 +152,9 @@
   }, {
     name: '南沙诸岛',
     value: 0
+  }, {
+    name: '海外',
+    value: 0
   }];
   let findProvinceId = [
     {id: 1, name: "北京市"},
@@ -233,7 +236,7 @@
           {start: 101, end: 1000},{start: 11, end: 100}, {start: 1, end: 10},
           {start: 0, end: 0}
         ],  
-        color: colorList  
+        color: colorList
       },
       series: [
         {
@@ -265,9 +268,10 @@
             normal: {
               borderWidth: .5,//区域边框宽度
               borderColor: '#e1e596',//区域边框颜色
-              color: 
+              color:
                 function (params) { // 设置颜色
-                  let itemValue = params.data.value;
+                  //console.log(params.data);
+                  let itemValue = params.data ? params.data.value : 0;
                   let index = 0;
                   if (itemValue > 5000) index = 0;
                   else if (itemValue > 1000) index = 1;
@@ -281,9 +285,9 @@
             emphasis: {
               borderWidth: .5,
               borderColor: '#e1e596',
-              color:
+              color: 
                 function (params) { // 设置颜色
-                  let itemValue = params.data.value;
+                  let itemValue = params.data ? params.data.value : 0;
                   let index = 0;
                   if (itemValue > 5000) index = 0;
                   else if (itemValue > 1000) index = 1;
@@ -305,7 +309,7 @@
 
 
   // 请求部分
-  let rootUrl = 'https://whcomeon.100steps.top/'; // http://llzhisu.cn:8080/   http://localhost:8000/  https://whcomeon.100steps.top/
+  let rootUrl = 'http://localhost:8000/'; // http://llzhisu.cn:8080/   http://localhost:8000/  https://whcomeon.100steps.top/
   let encoded_uri = window.location.href;
   let id = '';
   let grobal = {
@@ -345,7 +349,7 @@
   }
   
   request('api/index',{ // 对 fetch 的封装
-    credentials: 'include',
+    //credentials: 'include',
   }) // 首页内容请求
   .then((data) => {
     console.log(data);
@@ -485,7 +489,7 @@
     console.log(document.querySelectorAll('.barrage-item'));
     setTimeout(() => {
       request(`api/index/mes?last_id=${grobal.last_id}`, {
-        credentials: 'include',
+        //credentials: 'include',
       }) // 首页弹幕轮询
       .then((data) => {
         console.log(data);
