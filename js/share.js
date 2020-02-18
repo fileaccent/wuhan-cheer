@@ -3,7 +3,11 @@ let myChart = echarts.init(document.getElementById('china-map'));
 
 let grobal = JSON.parse(window.sessionStorage.getItem('grobal'));
 
+<<<<<<< HEAD
 let colorList = ['#1f6d8e', '#33a4af', '#70d4de','#bce6ea', '#e5eabc', '#eeeeee'];
+=======
+let colorList = ['#29454c', '#4c6b73', '#819d9e','#b2ced8v', '#vced3e0', '#eeeeee'];
+>>>>>>> 9a133c7c6f1d47df798bc0918106aac414c14926
 
 let provinces = ['shanghai', 'hebei', 'shanxi', 'neimenggu', 'liaoning', 'jilin', 'heilongjiang', 'jiangsu', 'zhejiang', 'anhui', 'fujian', 'jiangxi', 'shandong', 'henan', 'hubei', 'hunan', 'guangdong', 'guangxi', 'hainan', 'sichuan', 'guizhou', 'yunnan', 'xizang', 'shanxi1', 'gansu', 'qinghai', 'ningxia', 'xinjiang', 'beijing', 'tianjin', 'chongqing', 'xianggang', 'aomen'];
 
@@ -78,8 +82,8 @@ function initEcharts() {
           normal: {
             show: false,//显示省份标签
             textStyle:{
-              color: '#000',
-              fontSize: 8,
+              color: '#636260',
+              fontSize: 6,
               fontWeight: 'bold',
             }//省份标签字体样式
           },
