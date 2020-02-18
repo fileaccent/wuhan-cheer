@@ -46,7 +46,7 @@
   })
   // 中国地图部分
   let myChart = echarts.init(document.getElementById('china-map'));
-  let colorList = ['#29454c', '#4c6b73', '#819d9e','b2ced8v', '#vced3e0', '#eeeeee'];
+  let colorList = ['#1f6d8e', '#33a4af', '#70d4de','#bce6ea', '#e5eabc', '#eeeeee'];
   let seriesData = [{
     name: '北京',
     value: 0
@@ -229,7 +229,7 @@
           fontSize:10
         },
         splitList: [
-          {start: 5000, end:Infinity},{start: 1000, end: 5000},  
+          {start: 5000, end:Infinity},{start: 1001, end: 5000},  
           {start: 101, end: 1000},{start: 11, end: 100}, {start: 1, end: 10},
           {start: 0, end: 0}
         ],  
@@ -249,8 +249,8 @@
             normal: {
               show: true,//显示省份标签
               textStyle:{
-                color: '#636260',
-                fontSize: 6,
+                color: '#000',
+                fontSize: 8,
                 fontWeight: 'bold',
               }//省份标签字体样式
             },

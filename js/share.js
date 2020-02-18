@@ -3,7 +3,7 @@ let myChart = echarts.init(document.getElementById('china-map'));
 
 let grobal = JSON.parse(window.sessionStorage.getItem('grobal'));
 
-let colorList = ['#29454c', '#4c6b73', '#819d9e','b2ced8v', '#vced3e0', '#eeeeee'];
+let colorList = ['#1f6d8e', '#33a4af', '#70d4de','#bce6ea', '#e5eabc', '#eeeeee'];
 
 let provinces = ['shanghai', 'hebei', 'shanxi', 'neimenggu', 'liaoning', 'jilin', 'heilongjiang', 'jiangsu', 'zhejiang', 'anhui', 'fujian', 'jiangxi', 'shandong', 'henan', 'hubei', 'hunan', 'guangdong', 'guangxi', 'hainan', 'sichuan', 'guizhou', 'yunnan', 'xizang', 'shanxi1', 'gansu', 'qinghai', 'ningxia', 'xinjiang', 'beijing', 'tianjin', 'chongqing', 'xianggang', 'aomen'];
 
