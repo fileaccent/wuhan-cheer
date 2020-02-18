@@ -1,2 +1,500 @@
-!function(e){var n={};function t(a){if(n[a])return n[a].exports;var o=n[a]={i:a,l:!1,exports:{}};return e[a].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=e,t.c=n,t.d=function(e,n,a){t.o(e,n)||Object.defineProperty(e,n,{enumerable:!0,get:a})},t.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},t.t=function(e,n){if(1&n&&(e=t(e)),8&n)return e;if(4&n&&"object"==typeof e&&e&&e.__esModule)return e;var a=Object.create(null);if(t.r(a),Object.defineProperty(a,"default",{enumerable:!0,value:e}),2&n&&"string"!=typeof e)for(var o in e)t.d(a,o,function(n){return e[n]}.bind(null,o));return a},t.n=function(e){var n=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(n,"a",n),n},t.o=function(e,n){return Object.prototype.hasOwnProperty.call(e,n)},t.p="",t(t.s=0)}([function(e,n,t){"use strict";function a(e){if(Array.isArray(e)){for(var n=0,t=Array(e.length);n<e.length;n++)t[n]=e[n];return t}return Array.from(e)}!function(){document.getElementById("button").addEventListener("click",(function(){var e=document.querySelector(".input-box > input").value||"奥里给",n=+c.province_id;if(c.province_id&&e.length<22)s("api/message",{method:"POST",credentials:"include",body:"content="+e+"&province_id="+n,headers:{"Content-Type":"application/x-www-form-urlencoded"}}).then((function(e){console.log(e),document.querySelector(".input-box > input").value="",window.location="./share.html",window.sessionStorage.setItem("grobal",JSON.stringify(c))}));else{if(e.length>=22){var t=document.createElement("div");t.style.cssText="\n        padding:2vw;\n        font-size:3vw;\n        color:white;\n        background-color:black;\n        position:absolute;\n        bottom:5vw;\n        left:50%;\n        transform:translate(-50%, -50%);\n        border-radius:2vw;\n        ",t.innerHTML="字数太多了哦",document.body.append(t),setTimeout((function(){document.body.removeChild(t)}),2e3)}console.log("正在获取省份中")}}));var e,n,t,o=echarts.init(document.getElementById("china-map")),i=["#29454c","#4c6b73","#819d9e","#b2ced8","#ced3e0","#eeeeee"],r=[{name:"北京",value:0},{name:"天津",value:0},{name:"上海",value:0},{name:"重庆",value:0},{name:"河北",value:0},{name:"河南",value:0},{name:"云南",value:0},{name:"辽宁",value:0},{name:"黑龙江",value:0},{name:"湖南",value:0},{name:"安徽",value:0},{name:"山东",value:0},{name:"新疆",value:0},{name:"江苏",value:0},{name:"浙江",value:0},{name:"江西",value:0},{name:"湖北",value:0},{name:"广西",value:0},{name:"甘肃",value:0},{name:"山西",value:0},{name:"内蒙古",value:0},{name:"陕西",value:0},{name:"吉林",value:0},{name:"福建",value:0},{name:"贵州",value:0},{name:"广东",value:0},{name:"青海",value:0},{name:"西藏",value:0},{name:"四川",value:0},{name:"宁夏",value:0},{name:"海南",value:0},{name:"台湾",value:0},{name:"香港",value:0},{name:"澳门",value:0},{name:"南沙诸岛",value:0}],l=[{id:1,name:"北京市"},{id:2,name:"天津市"},{id:3,name:"上海市"},{id:4,name:"重庆市"},{id:5,name:"河北省"},{id:6,name:"山西省"},{id:7,name:"辽宁省"},{id:8,name:"吉林省"},{id:9,name:"黑龙江省"},{id:10,name:"江苏省"},{id:11,name:"浙江省"},{id:12,name:"安徽省"},{id:13,name:"福建省"},{id:14,name:"江西省"},{id:15,name:"山东省"},{id:16,name:"河南省"},{id:17,name:"湖北省"},{id:18,name:"湖南省"},{id:19,name:"广东省"},{id:20,name:"海南省"},{id:21,name:"四川省"},{id:22,name:"贵州省"},{id:23,name:"云南省"},{id:24,name:"陕西省"},{id:25,name:"甘肃省"},{id:26,name:"青海省"},{id:27,name:"台湾省"},{id:28,name:"内蒙古"},{id:29,name:"广西"},{id:30,name:"西藏"},{id:31,name:"宁夏"},{id:32,name:"新疆"},{id:33,name:"香港"},{id:34,name:"澳门"},{id:35,name:"海外"}];window.addEventListener("pageshow",(function(){sessionStorage.getItem("need-refresh")&&(location.reload(),sessionStorage.removeItem("need-refresh"))})),e=document.body.clientWidth,n=document.body.clientHeight,document.querySelector(".foot-box").style.marginTop="calc("+n+"px - 182vw)",document.querySelector(".barrage-box").style.top=+e/100*55+"px",t={title:{text:"",left:"center"},tooltip:{trigger:"item",formatter:"{b}<br/>{c}人助力"},visualMap:{show:!0,x:"left",y:"50%",itemWidth:10,itemHeight:10,textStyle:{fontSize:10},splitList:[{start:5e3,end:1/0},{start:1001,end:5e3},{start:101,end:1e3},{start:11,end:100},{start:1,end:10},{start:0,end:0}],color:i},series:[{name:"中国",type:"map",mapType:"china",roam:!1,data:r,top:"3%",zoom:1.1,selectedMode:"single",label:{normal:{show:!0,textStyle:{color:"#636260",fontSize:6,fontWeight:"bold"}},emphasis:{show:!1,textStyle:{color:"#000"}}},itemStyle:{normal:{borderWidth:.5,borderColor:"#e1e596",color:function(e){var n=e.data.value;return i[n>5e3?0:n>1e3?1:n>100?2:n>10?3:n>0?4:5]}},emphasis:{borderWidth:.5,borderColor:"#e1e596",color:function(e){var n=e.data.value;return i[n>5e3?0:n>1e3?1:n>100?2:n>10?3:n>0?4:5]}}}}]},o.setOption(t),o.off("click");var d="https://whcomeon.100steps.top/",u=window.location.href,c={avatar:"",rootUrl:"",province:"",province_id:"",latitude:0,longitude:0,last_id:0,option:""},m=[];function s(e){var n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};return fetch(d+e,n).then((function(e){if(401!==e.status)return e.json();console.log("重新登录"),window.location=d+"/auth/jump?redirect="+u})).catch((function(e){console.log(e)}))}s("api/index",{credentials:"include"}).then((function(e){console.log(e),c.avatar=e.avatar,e.id,0!==e.province_id?(c.latitude=e.latitude,c.longitude=e.longitude,c.province_id=e.province_id):(console.log("error!"),function e(){3===(e.index=0)&&(alert("获取地区信息失败,请刷新网页!"),location=window.location.href),s("index/reLocation",{}).then((function(e){return e.json()})).then((function(n){0!==n.province_id?(c.latitude=n.latitude,c.longitude=n.longitude,c.province_id=n.province_id):(e.index++,e())}))}()),c.latitude=e.latitude,c.longitude=e.longitude,c.province_id=e.province_id,c.last_id=e.message[e.message.length-1].id,l.map((function(e){e.id===c.province_id&&(c.province=e.name)})),console.log(c);var n=e.province.map((function(e){return{name:/省/.test(e.name)?e.name.replace("省",""):/市/.test(e.name)?e.name.replace("市",""):e.name,value:e.mes_amount}}));console.log(n),c.option=n;var t=n.reduce((function(e,n){return e+ +n.value}),0);document.querySelector(".relay").innerHTML="共 "+t+" 人接力",o.setOption({series:[{name:"中国",data:n,itemStyle:{normal:{areaColor:function(e){var n=e.data.value;return i[n>1e4?0:n>1e3?1:n>100?2:n>10?3:4]}},emphasis:{borderWidth:.5,borderColor:"#0550c3",color:function(e){var n=e.data.value;return i[n>1e4?0:n>1e3?1:n>100?2:n>10?3:4]}}}}]}),o.off("click"),function e(n){m=m.concat(n);var t=document.querySelectorAll(".barrage");function o(e){var n=document.createElement("div");n.innerHTML=e;n.children;return n.children}for(var i=0;i<4;i++)document.querySelectorAll(".barrage")[i].innerHTML=i%2?"\n        <div>\n          \n        </div>\n        ":'\n        <div>\n          <div class="barrage-item" style="background-color: rgba(0,0,0,0)"></div>\n        </div>\n        ',console.log("数据清空!"),console.log(document.querySelectorAll(".barrage")[i]);for(var r=0;r<m.length;r++){var l;(l=t[r%4].children[0]).append.apply(l,a(o('\n        <div class="barrage-item">\n          <div class="portait"><img src="'+n[r].user_avatar+'"/></div>\n          <div class="text">'+n[r].content+"</div>\n        </div>\n      ")))}m.splice(0,16),console.log(m),console.log(document.querySelectorAll(".barrage-item")),setTimeout((function(){s("api/index/mes?last_id="+c.last_id,{credentials:"include"}).then((function(t){console.log(t),console.log(t.message),c.last_id=t.message[t.message.length-1].id,n=t.message,console.log(n),e(n)}))}),28e3)}(e.message)}))}()}]);
-//# sourceMappingURL=index.js.map
+(function () {
+
+  document.getElementById('button').addEventListener('click', function () { // 收集数据, 跳转到share
+    let postMessageParams = {
+      content: document.querySelector('.input-box > input').value || '奥里给',
+      province_id: +grobal.province_id
+    }
+    if (grobal.province_id && postMessageParams.content.length < 22) {
+      request('api/message', {
+        method: 'POST',
+        credentials: 'include',
+        body: `content=${postMessageParams.content}&province_id=${postMessageParams.province_id}`,
+        headers: {
+          "Content-Type":"application/x-www-form-urlencoded"
+        }
+      })
+      .then((data) => {
+        console.log(data);
+        document.querySelector('.input-box > input').value="";
+        window.
+        location = './share.html';
+        window.sessionStorage.setItem('grobal', JSON.stringify(grobal));
+      })
+    } else {
+      if (postMessageParams.content.length >= 22) {
+        let div = document.createElement('div');
+        div.style.cssText = `
+        padding:2vw;
+        font-size:3vw;
+        color:white;
+        background-color:black;
+        position:absolute;
+        bottom:5vw;
+        left:50%;
+        transform:translate(-50%, -50%);
+        border-radius:2vw;
+        `;
+        div.innerHTML='字数太多了哦';
+        document.body.append(div);
+        setTimeout(() => {
+          document.body.removeChild(div);
+        }, 2000);
+      }
+      console.log('正在获取省份中');
+    }
+  })
+  // 中国地图部分
+  let myChart = echarts.init(document.getElementById('china-map'));
+  let colorList = ['#29454c', '#4c6b73', '#819d9e','#b2ced8', '#ced3e0', '#eeeeee'];
+  let seriesData = [{
+    name: '北京',
+    value: 0
+  }, {
+    name: '天津',
+    value: 0
+  }, {
+    name: '上海',
+    value: 0
+  }, {
+    name: '重庆',
+    value: 0
+  }, {
+    name: '河北',
+    value: 0
+  }, {
+    name: '河南',
+    value: 0
+  }, {
+    name: '云南',
+    value: 0
+  }, {
+    name: '辽宁',
+    value: 0
+  }, {
+    name: '黑龙江',
+    value: 0
+  }, {
+    name: '湖南',
+    value: 0
+  }, {
+    name: '安徽',
+    value: 0
+  }, {
+    name: '山东',
+    value: 0
+  }, {
+    name: '新疆',
+    value: 0
+  }, {
+    name: '江苏',
+    value: 0
+  }, {
+    name: '浙江',
+    value: 0
+  }, {
+    name: '江西',
+    value: 0
+  }, {
+    name: '湖北',
+    value: 0
+  }, {
+    name: '广西',
+    value: 0
+  }, {
+    name: '甘肃',
+    value: 0
+  }, {
+    name: '山西',
+    value: 0
+  }, {
+    name: '内蒙古',
+    value: 0
+  }, {
+    name: '陕西',
+    value: 0
+  }, {
+    name: '吉林',
+    value: 0
+  }, {
+    name: '福建',
+    value: 0
+  }, {
+    name: '贵州',
+    value: 0
+  }, {
+    name: '广东',
+    value: 0
+  }, {
+    name: '青海',
+    value: 0
+  }, {
+    name: '西藏',
+    value: 0
+  }, {
+    name: '四川',
+    value: 0
+  }, {
+    name: '宁夏',
+    value: 0
+  }, {
+    name: '海南',
+    value: 0
+  }, {
+    name: '台湾',
+    value: 0
+  }, {
+    name: '香港',
+    value: 0
+  }, {
+    name: '澳门',
+    value: 0
+  }, {
+    name: '南沙诸岛',
+    value: 0
+  }];
+  let findProvinceId = [
+    {id: 1, name: "北京市"},
+    {id: 2, name: "天津市"},
+    {id: 3, name: "上海市"},
+    {id: 4, name: "重庆市"},
+    {id: 5, name: "河北省"},
+    {id: 6, name: "山西省"},
+    {id: 7, name: "辽宁省"},
+    {id: 8, name: "吉林省"},
+    {id: 9, name: "黑龙江省"},
+    {id: 10, name: "江苏省"},
+    {id: 11, name: "浙江省"},
+    {id: 12, name: "安徽省"},
+    {id: 13, name: "福建省"},
+    {id: 14, name: "江西省"},
+    {id: 15, name: "山东省"},
+    {id: 16, name: "河南省"},
+    {id: 17, name: "湖北省"},
+    {id: 18, name: "湖南省"},
+    {id: 19, name: "广东省"},
+    {id: 20, name: "海南省"},
+    {id: 21, name: "四川省"},
+    {id: 22, name: "贵州省"},
+    {id: 23, name: "云南省"},
+    {id: 24, name: "陕西省"},
+    {id: 25, name: "甘肃省"},
+    {id: 26, name: "青海省"},
+    {id: 27, name: "台湾省"},
+    {id: 28, name: "内蒙古"},
+    {id: 29, name: "广西"},
+    {id: 30, name: "西藏"},
+    {id: 31, name: "宁夏"},
+    {id: 32, name: "新疆"},
+    {id: 33, name: "香港"},
+    {id: 34, name: "澳门"},
+    {id: 35, name: "海外"}
+  ]
+
+  window.addEventListener("pageshow", function(){
+    if(sessionStorage.getItem("need-refresh")){
+        location.reload();
+        sessionStorage.removeItem("need-refresh");
+    }
+  });
+
+  setStyle();
+
+  initEcharts(); // 初始化
+  function setStyle () {
+    let clientWidth = document.body.clientWidth;
+    let clientHeight = document.body.clientHeight;
+    document.querySelector('.foot-box').style.marginTop = `calc(${clientHeight}px - 182vw)`;
+    document.querySelector('.barrage-box').style.top = `${+clientWidth / 100 * 55}px`
+  }
+  // 初始化echarts
+  function initEcharts() {
+    let tmpSeriesData = seriesData;
+    let option = {
+      title: {
+        text: '',
+        left: 'center'
+      },
+      tooltip: {
+        trigger: 'item',
+        formatter: '{b}<br/>{c}人助力'
+      },
+      visualMap: {  
+        show : true,  
+        x: 'left',  
+        y: '50%',
+        itemWidth:10,
+        itemHeight:10,
+        textStyle: {
+          fontSize:10
+        },
+        splitList: [
+          {start: 5000, end:Infinity},{start: 1001, end: 5000},  
+          {start: 101, end: 1000},{start: 11, end: 100}, {start: 1, end: 10},
+          {start: 0, end: 0}
+        ],  
+        color: colorList  
+      },
+      series: [
+        {
+          name: '中国',
+          type: 'map',
+          mapType: 'china',
+          roam: false,//是否开启鼠标缩放和平移漫游
+          data: tmpSeriesData,
+          top: "3%",//组件距离容器的距离
+          zoom:1.1,
+          selectedMode : 'single',
+          label: {
+            normal: {
+              show: true,//显示省份标签
+              textStyle:{
+                color: '#636260',
+                fontSize: 6,
+                fontWeight: 'bold',
+              }//省份标签字体样式
+            },
+            emphasis: {//对应的鼠标悬浮效果
+              show: false,
+              textStyle: {
+                color: '#000'
+              }
+            }
+          },
+          itemStyle: {
+            normal: {
+              borderWidth: .5,//区域边框宽度
+              borderColor: '#e1e596',//区域边框颜色
+              color: 
+                function (params) { // 设置颜色
+                  let itemValue = params.data.value;
+                  let index = 0;
+                  if (itemValue > 5000) index = 0;
+                  else if (itemValue > 1000) index = 1;
+                  else if (itemValue > 100) index =2;
+                  else if (itemValue > 10) index = 3;
+                  else if (itemValue > 0) index = 4;
+                  else index = 5;
+                  return colorList[index];
+                }
+            },
+            emphasis: {
+              borderWidth: .5,
+              borderColor: '#e1e596',
+              color:
+                function (params) { // 设置颜色
+                  let itemValue = params.data.value;
+                  let index = 0;
+                  if (itemValue > 5000) index = 0;
+                  else if (itemValue > 1000) index = 1;
+                  else if (itemValue > 100) index =2;
+                  else if (itemValue > 10) index = 3;
+                  else if (itemValue > 0) index = 4;
+                  else index = 5;
+                  return colorList[index];
+                }
+            }
+          }
+        }
+      ]
+    };
+    myChart.setOption(option);
+
+    myChart.off("click");
+  }
+
+
+  // 请求部分
+  let rootUrl = 'https://whcomeon.100steps.top/'; // http://llzhisu.cn:8080/   http://localhost:8000/  https://whcomeon.100steps.top/
+  let encoded_uri = window.location.href;
+  let id = '';
+  let grobal = {
+    avatar: '',
+    rootUrl: '',
+    province: '',
+    province_id: '',
+    latitude: 0,
+    longitude: 0,
+    last_id:0,
+    option: '',
+  };
+  let messages = [
+
+  ];
+  let getLoactionErr = function getLoactionErrFunction () {
+    getLoactionErrFunction.index = 0;
+    if (getLoactionErrFunction.index === 3) {
+      alert('获取地区信息失败,请刷新网页!');
+      location = window.location.href;
+    }
+    request('index/reLocation', {
+      //credentials: 'include'
+    }).then((res) => {
+      return res.json()
+    })
+    .then((data) => {
+      if (data.province_id !== 0) {
+        grobal.latitude = data.latitude;
+        grobal.longitude = data.longitude;
+        grobal.province_id = data.province_id;
+      } else {
+        getLoactionErrFunction.index++;
+        getLoactionErrFunction();
+      }
+    })
+  }
+  
+  request('api/index',{ // 对 fetch 的封装
+    credentials: 'include',
+  }) // 首页内容请求
+  .then((data) => {
+    console.log(data);
+    grobal.avatar = data.avatar; // 保存头像 id
+    id = data.id;
+    if (data.province_id !== 0) {
+      grobal.latitude = data.latitude;
+      grobal.longitude = data.longitude;
+      grobal.province_id = data.province_id;
+    } else {
+      console.log('error!');
+      getLoactionErr();
+    }
+    grobal.latitude = data.latitude;
+    grobal.longitude = data.longitude;
+    grobal.province_id = data.province_id;
+    grobal.last_id = data.message[data.message.length - 1].id;
+    findProvinceId.map((item) => {
+      if( item.id === grobal.province_id) {
+        grobal.province = item.name;
+      }
+    })
+    console.log(grobal);
+    let option = data.province.map((item) => { // 把省去掉不然有些数据,无法获取
+      let name;
+      if (/省/.test(item.name)) {
+        name = item.name.replace('省','');
+      } else if (/市/.test(item.name)) {
+        name = item.name.replace('市','');
+      } else {
+        name = item.name
+      }
+      return {
+        name: name,
+        value: item.mes_amount
+      }
+    })
+    console.log(option);
+    grobal.option = option;
+    let total = option.reduce((total,item) => {
+      return total + +item.value;
+    },0);
+    document.querySelector('.relay').innerHTML = `共 ${total} 人接力`
+    myChart.setOption({
+      series:[{
+        name: '中国',
+        data: option,
+        itemStyle: {
+          normal: {
+            areaColor: 
+              function (params) { // 设置颜色
+                let itemValue = params.data.value;
+                let index = 0;
+                if (itemValue > 10000) index = 0;
+                else if (itemValue > 1000) index = 1;
+                else if (itemValue > 100) index =2;
+                else if (itemValue > 10) index = 3;
+                else index = 4;
+                return colorList[index];
+              }
+          },
+          emphasis: {
+            borderWidth: .5,
+            borderColor: '#0550c3',
+            color: function (params) { // 设置颜色
+                let itemValue = params.data.value;
+                let index = 0;
+                if (itemValue > 10000) index = 0;
+                else if (itemValue > 1000) index = 1;
+                else if (itemValue > 100) index =2;
+                else if (itemValue > 10) index = 3;
+                else index = 4;
+                return colorList[index];
+              }
+          }
+        },
+      }]
+    });
+    myChart.off("click");
+
+    setBarrage(data.message); // 设置弹幕
+     
+  })
+
+  function request (url, setting={}) {
+    return fetch(rootUrl + url, setting)
+    .then((res)=> {
+      if (res.status === 401) {
+        console.log('重新登录');
+        window.location = rootUrl + `/auth/jump?redirect=${encoded_uri}`;
+      } else {
+        return res.json();
+      }
+    })
+    .catch(err=> {
+      console.log(err);
+    })
+  }
+
+  function setBarrage (message) {
+    messages = messages.concat(message);
+    let barrage = document.querySelectorAll('.barrage'); // 输入弹幕
+    function parseDom(arg) {
+  　　 var objE = document.createElement("div");
+  　　 objE.innerHTML = arg;
+      let obj = objE.children;
+  　　 return objE.children;
+    };
+    for (let i = 0; i < 4; i++) {
+      //barrage[i].removeChild(document.querySelectorAll('.barrage-item'));
+      if(i%2) {
+        document.querySelectorAll('.barrage')[i].innerHTML = `
+        <div>
+          
+        </div>
+        `;
+      } else {
+        document.querySelectorAll('.barrage')[i].innerHTML = `
+        <div>
+          <div class="barrage-item" style="background-color: rgba(0,0,0,0)"></div>
+        </div>
+        `;
+      }
+      console.log('数据清空!');
+      console.log(document.querySelectorAll('.barrage')[i]);
+    }
+    for (let i = 0;i < messages.length; i++) {
+      barrage[i % 4].children[0].append(...parseDom(`
+        <div class="barrage-item">
+          <div class="portait"><img src="${message[i].user_avatar}"/></div>
+          <div class="text">${message[i].content}</div>
+        </div>
+      `))
+    }
+    messages.splice(0,16);
+    console.log(messages);
+    console.log(document.querySelectorAll('.barrage-item'));
+    setTimeout(() => {
+      request(`api/index/mes?last_id=${grobal.last_id}`, {
+        credentials: 'include',
+      }) // 首页弹幕轮询
+      .then((data) => {
+        console.log(data);
+        console.log(data.message);
+        grobal.last_id = data.message[data.message.length - 1].id;
+        message = data.message;
+        console.log(message);
+        setBarrage(message);
+      })
+    }, 28000)
+  }
+})();
