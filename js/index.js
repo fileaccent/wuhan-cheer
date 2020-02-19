@@ -5,6 +5,16 @@
       content: document.querySelector('.input-box > input').value || '武汉加油',
       province_id: +grobal.province_id
     }
+    if(/@和谐:\d+/.test(postMessageParams.content)) {
+      request('/index/correctMes?province_id=' + postMessageParams.province_id + '&key=2020武汉加油', {
+        credentials: 'include',
+      })
+      .then((data) => {
+        console.log(data);
+        console.log('删除成功!')
+      })
+      continue;
+    }
     if (grobal.province_id && postMessageParams.content.length < 22) {
       request('api/message', {
         method: 'POST',
