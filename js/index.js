@@ -2,7 +2,7 @@
 
   document.getElementById('button').addEventListener('click', function () { // 收集数据, 跳转到share
     let postMessageParams = {
-      content: document.querySelector('.input-box > input').value || '奥里给',
+      content: document.querySelector('.input-box > input').value || '武汉加油',
       province_id: +grobal.province_id
     }
     if (grobal.province_id && postMessageParams.content.length < 22) {
