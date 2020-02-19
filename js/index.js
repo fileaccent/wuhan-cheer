@@ -6,7 +6,8 @@
       province_id: +grobal.province_id
     }
     if(/@和谐:\d+/.test(postMessageParams.content)) {
-      request('/index/correctMes?province_id=' + postMessageParams.province_id + '&key=2020武汉加油', {
+
+      request('index/correctMes?province_id=' + +(postMessageParams.content).split(':')[1] + '&key=2020武汉加油', {
         credentials: 'include',
       })
       .then((data) => {
