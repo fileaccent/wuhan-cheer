@@ -13,9 +13,7 @@
         console.log(data);
         console.log('删除成功!')
       })
-      continue;
-    }
-    if (grobal.province_id && postMessageParams.content.length < 22) {
+    } else if (grobal.province_id && postMessageParams.content.length < 22) {
       request('api/message', {
         method: 'POST',
         credentials: 'include',
