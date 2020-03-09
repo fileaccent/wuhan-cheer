@@ -34,7 +34,36 @@ let server = http.createServer(function(request,response) {
       {
         "id": 4,
         "name": "重庆市",
-        "mes_amount": 1
+        "mes_amount": 1,
+        "issues": [
+          {
+            "college": "物理与光电学院",
+            "name": "张三",
+            "intro": "个人成就个人成就个人成就个人成就个人成就个人成就",
+            "picture": [
+              "./image/back.svg",
+              "./image/cancel.svg",
+            ]
+          },
+          {
+            "college": "物理与光电学院",
+            "name": "小埋",
+            "intro": "个人成就个人成就个人成就个人成就个人成就个人成就",
+            "picture": [
+              "./image/back.svg",
+              "./image/cancel.svg",
+            ]
+          },
+          {
+            "college": "物理与光电学院",
+            "name": "开心",
+            "intro": "个人成就个人成就个人成就个人成就个人成就个人成就",
+            "picture": [
+              "../image/back.svg",
+              "../image/cancel.svg",
+            ]
+          },
+        ]
       }
     ],
     "message":

@@ -233,3 +233,118 @@ body {
   align-self: flex-end;
   user-select: none;
 }
+.pop-up-box {
+  width:80vw;
+  height:calc(100vh - 50vw);
+  position:fixed;
+  top:20vw;
+  left:10vw;
+  box-sizing: content-box;
+  outline:100vw solid rgba(0, 0, 0, 0.411);
+  background:#E7F4E3;
+  /* background-image: url('../image/pop-up.png');
+  background-size: 100% 20%; */
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /* background-color: #E7EAED; */
+  border-radius: 5vw;
+  z-index:10;
+  display:none;
+}
+.head-tool {
+  width:80vw;
+  height:15vw;
+  display:flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.pop-messsage-box {
+  width:80vw;
+  height:calc(100vh - 70vw);
+}
+.back {
+  width:7vw;
+  height:7vw;
+  display:none;
+}
+.cancel {
+  width:7vw;
+  height:7vw;
+}
+.help-people-num {
+  padding: 0 7vw;
+}
+.help-people-num span {
+  width:10vw;
+  margin-left:3vw;
+  text-align:center;
+}
+.excellent-people-title {
+  padding:4vw;
+  text-align: center;
+}
+.excellent-people-box {
+  width:80vw;
+  height:calc(100vh - 100vw);
+  /* border:1px solid #3FA0A7; */
+  border-radius:2vw;
+  margin:0 auto;
+  overflow-x:hidden;
+  overflow-y:auto;
+}
+.excellent-people-item {
+  width:70vw;
+  height:10vw;
+  font-size:4vw;
+  border:1px solid #3FA0A7;
+  border-radius:2vw;
+  margin: 0 auto;
+  margin-top:2vw;
+  display:flex;
+  justify-content: space-around;
+}
+.excellent-people-item-academy {
+  width:35vw;
+  height:10vw;
+  line-height:10vw;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+  overflow: hidden;
+  margin-left:4vw;
+}
+.excellent-people-item-name {
+  width:20vw;
+  height:10vw;
+  line-height:10vw;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+  overflow: hidden;
+  margin-right:2vw;
+}
+.hint-text {
+  width:80vw;
+  height:5vw;
+  font-size:4vw;
+  padding:5vw 0;
+  text-align:center;
+}
+.detail-message {
+  width:80vw;
+  height:calc(100vh - 70vw);
+  display:none;
+}
+.img-box {
+  width:74vw;
+  margin:0 auto;
+}
+.person-text {
+  width:70vw;
+  height:calc(100vh - 134vw);
+  margin:0 auto;
+  font-size:4vw;
+  line-height:6vw;
+  margin-top:10vw;
+  text-indent:8vw;
+  overflow:hidden;
+  overflow-y:auto;
+}

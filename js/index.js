@@ -1,5 +1,5 @@
 (function () {
-
+  
   document.getElementById('button').addEventListener('click', function () { // 收集数据, 跳转到share
     let postMessageParams = {
       content: document.querySelector('.input-box > input').value || '武汉加油',
@@ -226,9 +226,13 @@
       },
       tooltip: {
         trigger: 'item',
-        formatter: '{b}<br/>{c}人助力'
+        formatter: function (params) {
+          console.log(params.data);
+          renderPop(params.data);
+          return '';
+        }
       },
-      visualMap: {  
+      visualMap: {
         show : true,  
         x: 'left',  
         y: '50%',
@@ -311,10 +315,11 @@
 
     myChart.off("click");
   }
+  
 
 
   // 请求部分
-  let rootUrl = 'https://whcomeon.100steps.top/'; // http://llzhisu.cn:8080/   http://localhost:8000/  https://whcomeon.100steps.top/
+  let rootUrl = 'http://llzhisu.cn:8080/'; // http://llzhisu.cn:8080/   http://localhost:8000/  https://whcomeon.100steps.top/
   let encoded_uri = window.location.href;
   let id = '';
   let grobal = {
@@ -337,7 +342,7 @@
       location = window.location.href;
     }
     request('index/reLocation', {
-      //credentials: 'include'
+      credentials: 'include'
     }).then((res) => {
       return res.json()
     })
@@ -381,16 +386,14 @@
     let option = data.province.map((item) => { // 把省去掉不然有些数据,无法获取
       let name;
       if (/省/.test(item.name)) {
-        name = item.name.replace('省','');
+        item.name = item.name.replace('省','');
       } else if (/市/.test(item.name)) {
-        name = item.name.replace('市','');
+        item.name = item.name.replace('市','');
       } else {
-        name = item.name
+        item.name = item.name
       }
-      return {
-        name: name,
-        value: item.mes_amount
-      }
+      item.value = item.mes_amount;
+      return item;
     })
     console.log(option);
     grobal.option = option;
@@ -436,7 +439,16 @@
     myChart.off("click");
 
     setBarrage(data.message); // 设置弹幕
-     
+    (function () {
+      $('.pop-up-box').toggle(); // 初始化弹窗的按钮
+      $('.back > img').on('click', function () {
+        $('.pop-messsage-box').toggle(500);
+        $('.detail-message').toggle(500);
+      })
+      $('.cancel > img').on('click', function () {
+        $('.pop-up-box').toggle();
+      })
+    })
   })
 
   function request (url, setting={}) {
@@ -505,5 +517,53 @@
         setBarrage(message);
       })
     }, 28000)
+  }
+
+  // 渲染弹窗
+  function renderPop (data) {
+    console.log(data);
+    if (data.issues) {
+      $('.help-people-num > span').val(data.mes_amount);
+      $('.excellent-people-box').empty();
+      for (let i = 0; i < data.issues.length; i++) {
+        var excellent_people_item = document.createElement('div');
+        excellent_people_item.setAttribute('class', 'excellent-people-item');
+        function parseDom (arg) {
+      　　 var objE = document.createElement("div");
+      　　 objE.innerHTML = arg;
+          let obj = objE.children;
+      　　 return objE.children;
+        }
+        excellent_people_item.append(...parseDom(`
+        <div class="excellent-people-item-academy">
+          ${data.issues[i].college}
+        </div>
+        <div class="excellent-people-item-name">
+          ${data.issues[i].name}
+        </div>
+        `))
+        excellent_people_item.onclick = function () {
+          $('.back > img').toggle();
+          $('.pop-messsage-box').toggle(500);
+          $('.detail-message').toggle(500);
+          $('.img-box').empty();
+          var html = '';
+          html += `
+          <ul class="sw-slides">
+          `
+          for (var j = 0; j < data.issues[i].picture.length; j++) {
+            html += `<li class="sw-slide"><img src="${data.issues[i].picture[j]}" /></li>`
+          }
+          html += `</ul>`
+          $('.img-box').append(html);
+          $('.img-box').swipeslider();
+          console.log(data.issues[i]);
+          $('.person-text').html(data.issues[i].intro);
+        }
+        document.querySelector('.excellent-people-box').append(excellent_people_item);
+      }
+    } else {
+      alert('数据没有被正确渲染!');
+    }
   }
 })();
